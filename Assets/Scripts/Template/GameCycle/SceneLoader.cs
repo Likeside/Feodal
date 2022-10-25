@@ -28,6 +28,8 @@ namespace Utilities {
                     SaveSystem = new SaveSystemJson();
                     break;
             }
+
+            _animator.speed = 1.5f;
         }
 
         void Start() {
