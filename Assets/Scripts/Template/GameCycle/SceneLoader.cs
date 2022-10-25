@@ -11,8 +11,11 @@ namespace Utilities {
         
         [SerializeField] Image _blackScreen;
         [SerializeField] AdsAndAnalyticsConfigSO _adsConfig;
-
+        [SerializeField] Animator _animator;
+        static readonly int FadeOut = Animator.StringToHash("FadeOut");
+        string _sceneName;
         public ISaveSystem SaveSystem { get; private set; }
+        
 
         protected override void OnSingletonAwake() {
             base.OnSingletonAwake();
@@ -31,7 +34,7 @@ namespace Utilities {
 
         void Start() {
             Debug.Log("Starting scene loader");
-            _blackScreen.material.color = Color.clear;
+           // _blackScreen.material.color = Color.clear;
             LevelTracker.LevelToLoad = SaveSystem.LoadGame().LevelToLoad;
             Debug.Log("Loaded: " + LevelTracker.LevelToLoad);
         }
@@ -99,15 +102,17 @@ namespace Utilities {
             LoadScene("Menu");
         }
 
+        /*
         public void BsFadeIn() {
             _blackScreen.material.DOColor(Color.clear, PanelManager.Instance.ElementsActiveness.blackScreenFadeDelay).SetUpdate(true);
             Time.timeScale = 1f;
         }
+        
 
         public void BsFadeOut() {
           _blackScreen.material.DOColor(PanelManager.Instance.ElementsActiveness.transitionColor, PanelManager.Instance.ElementsActiveness.blackScreenFadeDelay).SetUpdate(true);
         }
-        
+        */
         public void Quit() {
             SaveSystem.SaveGame();
             Application.Quit();
@@ -120,10 +125,17 @@ namespace Utilities {
 
         void LoadScene(string sceneName) {
             SaveSystem.SaveGame();
+            /*
             var tween = _blackScreen.material.DOColor(PanelManager.Instance.ElementsActiveness.transitionColor,
                 PanelManager.Instance.ElementsActiveness.blackScreenFadeDelay).SetUpdate(true);
             tween.onComplete = () => SceneManager.LoadScene(sceneName);
+            */
+            _animator.SetTrigger(FadeOut);
+            _sceneName = sceneName;
+        }
 
+        public void OnFadeComplete() {
+            SceneManager.LoadScene(_sceneName);
         }
     }
     
