@@ -1,10 +1,7 @@
-using System;
-using DG.Tweening;
 using Template.GameCycle;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Utilities.OdinEditor;
 
 namespace Utilities {
     public class SceneLoader: GlobalSingleton<SceneLoader> {
@@ -12,8 +9,9 @@ namespace Utilities {
         [SerializeField] Image _blackScreen;
         [SerializeField] AdsAndAnalyticsConfigSO _adsConfig;
         [SerializeField] Animator _animator;
-        static readonly int FadeOut = Animator.StringToHash("FadeOut");
         string _sceneName;
+        static readonly int FadeOut = Animator.StringToHash("FadeOut");
+        static readonly int FadeIn = Animator.StringToHash("FadeIn");
         public ISaveSystem SaveSystem { get; private set; }
         
 
@@ -136,6 +134,7 @@ namespace Utilities {
 
         public void OnFadeComplete() {
             SceneManager.LoadScene(_sceneName);
+            _animator.SetTrigger(FadeIn);
         }
     }
     
