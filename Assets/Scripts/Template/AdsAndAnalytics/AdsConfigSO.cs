@@ -1,6 +1,8 @@
 using UnityEngine;
 
 namespace Template.AdsAndAnalytics {
+    [CreateAssetMenu(fileName = "AdsConfigSO", menuName = "Configs/AdsConfigSO", order = 5)]
+
     public class AdsConfigSO: ScriptableObject {
         public bool isActive;
         

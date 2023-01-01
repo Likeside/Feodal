@@ -1,4 +1,5 @@
 using System;
+using Template.UI;
 using UnityEngine;
 using UnityEngine.UI;
 using Utilities.OdinEditor;
@@ -23,25 +24,27 @@ namespace Utilities {
         
         [Header("TutorialPanel")]
         [SerializeField] GameObject _tutPanel;
-        [SerializeField] Image _tutorialImage;
-        [SerializeField] TextSetter _tutorialText;
+
         [SerializeField] TextSetterMesh _versionText;
         
         public PanelEffectsConfigSO PanelEffectsConfigSo => _panelEffectsConfigSo;
         public UiElementsConfigSO ElementsActiveness => _elementsActiveness;
 
+        public event Action<bool> OnShouldInit;
+        public event Action<bool> OnBannerTime;
+        
+        #if UNITY_EDITOR
         public GameObject ShopPanel {
             get => _shopPanel;
             set => _shopPanel = value;
         }
+        #endif
 
         void Start() {
-           // SceneLoader.Instance.BsFadeIn();
             if (_policyPanel != null) {
                 if (AppPolicyManager.Instance.AppPolicyAccepted) {
                     _policyPanel.SetActive(false);
-                    if(AdsAndAnalyticsManager.Instance == null) Debug.Log("Instance null");
-                    AdsAndAnalyticsManager.Instance.Initialize();
+                    OnShouldInit?.Invoke(false);
                 }
                 else {
                     _policyPanel.SetActive(true);
@@ -56,20 +59,17 @@ namespace Utilities {
             }
             SetPanelsActiveness();
 
-            if (_elementsActiveness.rewardedFailedPanelActive) {
-                AdsAndAnalyticsManager.Instance.OnAdCanNotBeShown += ToggleRewardedFailedPanel;
-            }
         }
         
         public void TogglePausePanel() { 
             if(!_elementsActiveness.pausePanelActive) return;
-          AdsAndAnalyticsManager.Instance.ToggleBanner(_pausePanel.GetComponent<PanelEffect>().Hidden);
-          TogglePanel(_pausePanel);
+            OnBannerTime?.Invoke(_pausePanel.GetComponent<PanelEffect>().Hidden);
+            TogglePanel(_pausePanel);
         }
         
         public void ToggleGameCompletePanel() {
             if(!_elementsActiveness.gameCompletePanelActive) return;
-            AdsAndAnalyticsManager.Instance.ToggleBanner(_gameCompletePanel.GetComponent<PanelEffect>().Hidden);
+            OnBannerTime?.Invoke(_gameCompletePanel.GetComponent<PanelEffect>().Hidden);
           TogglePanel(_gameCompletePanel);
         }
         
@@ -96,8 +96,7 @@ namespace Utilities {
         
         public void ToggleTutorialPanel(Sprite image, string tutTextKey) {
             if(!_elementsActiveness.tutorialPanelActive) return;
-            _tutorialImage.sprite = image;
-            _tutorialText.SetText(tutTextKey);
+            _tutPanel.GetComponent<TutorialPanel>().Set(image, tutTextKey);
             ToggleTutorialPanel();
         }
 
@@ -112,8 +111,7 @@ namespace Utilities {
         public void ClosePolicyPanel() {
             _policyPanel.SetActive(false);
             AppPolicyManager.Instance.AcceptAppPolicy();
-            AdsAndAnalyticsManager.Instance.LogFirstGameEnter();
-            AdsAndAnalyticsManager.Instance.Initialize();
+            OnShouldInit?.Invoke(true);
         }
         
         public void CloseAgePanel() {
@@ -155,10 +153,6 @@ namespace Utilities {
           if(panel != null) panel.SetActive(active);
         }
 
-        void OnDestroy() {
-            if (_elementsActiveness.rewardedFailedPanelActive) {
-                AdsAndAnalyticsManager.Instance.OnAdCanNotBeShown -= ToggleRewardedFailedPanel;
-            }
-        }
+   
     }
 }

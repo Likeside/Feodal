@@ -1,3 +1,5 @@
+using System;
+using Template.AdsAndAnalytics;
 using Template.UI;
 using UnityEngine;
 using Utilities;
@@ -8,9 +10,10 @@ public class GameController : LocalSingleton<GameController> {
 
 
         void Start() { 
+                //TODO: Отписываться в определенный момент игры
                 if (_buttonManager.TipButtonActive) _buttonManager.OnTipButtonPressed += TipButtonPressed;
                 if (_buttonManager.PauseButtonActive) _buttonManager.OnTipButtonPressed += PauseButtonPressed;
-                if (PanelManager.Instance.ElementsActiveness.rateUsPanelActive) AdsAndAnalyticsManager.Instance.OnRateUsLinkOpened += RateUsLinkOpened;
+                if (PanelManager.Instance.ElementsActiveness.rateUsPanelActive) ExternalLinksManager.Instance.OnRateUsLinkOpened += RateUsLinkOpened;
         }
 
         void RateUsLinkOpened() {
