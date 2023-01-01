@@ -22,11 +22,11 @@ namespace UtilityScripts {
         void Start() {
             
             _ageText.text = _currentSymbols;
-            _ageText.font = TextLoader.Instance.Font;
+           // _ageText.font = TextLoader.Instance.Font;
             int i = 0;
             foreach (var btn in _numberButtons) {
                 var text =  btn.GetComponentInChildren<Text>();
-                text.font = TextLoader.Instance.Font;
+              //  text.font = TextLoader.Instance.Font;
                text.text = i.ToString();
                 btn.onClick.AddListener(delegate { AddAgeSymbol(btn.GetComponentInChildren<Text>().text); });
                 i++;
