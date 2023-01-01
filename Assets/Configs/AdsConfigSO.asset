@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 1
   androidID: 4975078
-  androidRewarded: 
-  androidInterstitial: 
-  androidBanner: 
+  androidRewarded: Rewarded_Android
+  androidInterstitial: Interstitial_Android
+  androidBanner: Banner_Android
   iosID: 
   iosRewarded: 
   iosInterstitial: 

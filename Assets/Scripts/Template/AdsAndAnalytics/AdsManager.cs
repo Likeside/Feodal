@@ -14,13 +14,16 @@ namespace Template.AdsAndAnalytics {
         public bool RewardedReady => Advertisement.IsReady(_rewarded);
         public int InterstitialFrequency => _config.interstitialFrequency;
 
-        static int _adCounter;
+        static int _adCounter; 
+        static bool _initialized;
         string _rewarded;
         string _interstitial;
         string _banner;
         
         public void Initialize() {
             if(!_config.isActive) return;
+            if(_initialized) return;
+            Debug.Log("Initializing ads");
 #if UNITY_ANDROID
             Advertisement.Initialize(_config.androidID);
             SetAdsPlatform(_config.androidRewarded, _config.androidInterstitial, _config.androidBanner);
@@ -31,6 +34,7 @@ namespace Template.AdsAndAnalytics {
             SetAdsPlatform(_config.iosRewarded, _config.iosInterstitial, _config.iosBanner);
 #endif
             Advertisement.AddListener(this);
+            _initialized = true;
         }
         
         public void PlayInterstitial(Action completionCallBack, int level) {

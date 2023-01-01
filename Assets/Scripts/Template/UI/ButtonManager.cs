@@ -29,6 +29,11 @@ namespace Template.UI {
         [SerializeField] Button _rateUsYes;
         [SerializeField] Button _rateUsNo;
         [SerializeField] Button[] _rewardedFailedPanelCloseButtons;
+        [SerializeField] Button[] _policyButtons;
+        [SerializeField] Button[] _termsButtons;
+
+        [Header("OnlySound")]
+        [SerializeField] Button[] _soundSubs;
         public event Action OnTipButtonPressed;
         public event Action OnPauseButtonPressed;
         public bool TipButtonActive => PanelManager.Instance.ElementsActiveness.tipButtonActive;
@@ -57,6 +62,16 @@ namespace Template.UI {
             foreach (var button in _rewardedFailedPanelCloseButtons) {
                 SetButton(button, PanelManager.Instance.ElementsActiveness.rewardedFailedPanelActive, PanelManager.Instance.ToggleRewardedFailedPanel);
             }
+            foreach (var button in _policyButtons) {
+                SetButton(button, true, ExternalLinksManager.Instance.OpenPolicyLink);
+            }
+            foreach (var button in _termsButtons) {
+                SetButton(button, true, ExternalLinksManager.Instance.OpenTermsLink);
+            }
+
+            foreach (var button in _soundSubs) {
+                SubSound(button);
+            }
         }
         void SetButton(Button button, bool active, UnityAction listener) {
             if (button != null) {
@@ -66,6 +81,13 @@ namespace Template.UI {
                     button.onClick.AddListener(listener);
                     button.onClick.AddListener(AudioManager.Instance.PlayTapSound);
                 }
+            }
+        }
+
+        void SubSound(Button button) {
+            if (button != null) {
+                button.onClick.RemoveListener(AudioManager.Instance.PlayTapSound);
+                button.onClick.AddListener(AudioManager.Instance.PlayTapSound);
             }
         }
         void TipButtonPressed() {

@@ -9,7 +9,7 @@ namespace Template.AdsAndAnalytics {
         [SerializeField] AnalyticsConfigSO _config;
         
         const string k_isFirstEnter = "isFirstEnter";
-
+        
         public void LogFirstGameEnter() {
             if(!_config.isActive) return;
             bool isFirstEnter = PlayerPrefsHelper.GetBool(k_isFirstEnter, true);
