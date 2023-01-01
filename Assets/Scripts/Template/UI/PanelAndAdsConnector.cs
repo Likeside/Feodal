@@ -11,6 +11,7 @@ namespace Template.UI {
             if (PanelManager.Instance.ElementsActiveness.rewardedFailedPanelActive) {
                 AdsManager.Instance.OnAdCanNotBeShown += PanelManager.Instance.ToggleRewardedFailedPanel;
             }
+            PanelManager.Instance.Init();
         }
 
         void InitManagers(bool firstEnter) {

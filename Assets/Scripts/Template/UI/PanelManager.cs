@@ -40,7 +40,7 @@ namespace Utilities {
         }
         #endif
 
-        void Start() {
+       public void Init() {
             if (_policyPanel != null) {
                 if (AppPolicyManager.Instance.AppPolicyAccepted) {
                     _policyPanel.SetActive(false);

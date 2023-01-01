@@ -62,6 +62,7 @@ namespace Utilities {
         }
 
         public void SkipLevel() {
+            Debug.Log("Skipping level from scene loader");
             AdsManager.Instance.PlayRewarded(LoadLevelAfterSkipping);
         }
 
