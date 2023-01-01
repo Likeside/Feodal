@@ -8,33 +8,21 @@ namespace Utilities {
     public class SceneLoader: GlobalSingleton<SceneLoader> {
         
         [SerializeField] Animator _animator;
+        [SerializeField] float _fadeSpeed;
         string _sceneName;
         static readonly int FadeOut = Animator.StringToHash("FadeOut");
         static readonly int FadeIn = Animator.StringToHash("FadeIn");
-        public ISaveSystem SaveSystem { get; private set; }
         
 
         protected override void OnSingletonAwake() {
             base.OnSingletonAwake();
-            switch (PanelManager.Instance.ElementsActiveness.saveSystemType) {
-                case SaveSystemType.Binary:
-                    SaveSystem = new SaveSystemBinary();
-                    break;
-                case SaveSystemType.Json:
-                    SaveSystem = new SaveSystemJson();
-                    break;
-                default:
-                    SaveSystem = new SaveSystemJson();
-                    break;
-            }
-
-            _animator.speed = 1.5f;
+            _animator.speed = _fadeSpeed;
         }
 
         void Start() {
             Debug.Log("Starting scene loader");
            // _blackScreen.material.color = Color.clear;
-            LevelTracker.LevelToLoad = SaveSystem.LoadGame().LevelToLoad;
+            LevelTracker.LevelToLoad = SaveSystemManager.Instance.LoadGame().LevelToLoad;
             Debug.Log("Loaded: " + LevelTracker.LevelToLoad);
         }
 
@@ -60,7 +48,7 @@ namespace Utilities {
         public void LoadNextLevel()
         {
             Debug.Log("Trying to load next level");
-             LevelTracker.LevelToLoad = SaveSystem.LoadGame().LevelToLoad;
+             LevelTracker.LevelToLoad = SaveSystemManager.Instance.LoadGame().LevelToLoad;
             if (LevelTracker.LevelToLoad > LevelTracker.MaxLevels) {
                 //PanelManager.Instance.ToggleGameCompletePanel();
                 LevelTracker.LevelToLoad = 1;
@@ -84,16 +72,16 @@ namespace Utilities {
         }
         
         public void Quit() {
-            SaveSystem.SaveGame();
+            SaveSystemManager.Instance.SaveGame();
             Application.Quit();
         }
 
         void OnApplicationFocus(bool hasFocus) {
-            if(!hasFocus) SaveSystem.SaveGame();
+            if(!hasFocus) SaveSystemManager.Instance.SaveGame();
         }
         
         void LoadScene(string sceneName) {
-            SaveSystem.SaveGame();
+            SaveSystemManager.Instance.SaveGame();
             _animator.SetTrigger(FadeOut);
             _sceneName = sceneName;
         }

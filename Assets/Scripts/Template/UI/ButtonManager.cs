@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Template.AdsAndAnalytics;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -51,7 +52,7 @@ namespace Template.UI {
             SetButton(_closeShopButton, PanelManager.Instance.ElementsActiveness.shopPanelActive, PanelManager.Instance.ToggleShopPanel);
             SetButton(_shopButton, PanelManager.Instance.ElementsActiveness.shopPanelActive, PanelManager.Instance.ToggleShopPanel);
             SetButton(_rateUsNo, PanelManager.Instance.ElementsActiveness.rateUsPanelActive, PanelManager.Instance.ToggleRateUsPanel);
-            SetButton(_rateUsYes, PanelManager.Instance.ElementsActiveness.rateUsPanelActive, AdsAndAnalyticsManager.Instance.OpenRateUsLink);
+            SetButton(_rateUsYes, PanelManager.Instance.ElementsActiveness.rateUsPanelActive, ExternalLinksManager.Instance.OpenRateUsLink);
 
             foreach (var button in _rewardedFailedPanelCloseButtons) {
                 SetButton(button, PanelManager.Instance.ElementsActiveness.rewardedFailedPanelActive, PanelManager.Instance.ToggleRewardedFailedPanel);
