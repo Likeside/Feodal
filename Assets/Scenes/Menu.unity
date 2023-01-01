@@ -1422,6 +1422,7 @@ MonoBehaviour:
   _musicBtnImage: {fileID: 1910889903}
   _basicConfigSo: {fileID: 11400000, guid: 6436e25c3abf976c3a78bc497b6f10a8, type: 2}
   _uiAudioSource: {fileID: 266865070}
+  _elementsActiveness: {fileID: 11400000, guid: 41d0729b10d21162ebda0b724e69656c, type: 2}
 --- !u!4 &266865069
 Transform:
   m_ObjectHideFlags: 0
@@ -6461,6 +6462,7 @@ MonoBehaviour:
   _termsButtons:
   - {fileID: 2948635705073161255}
   - {fileID: 1178116255}
+  _soundSubs: []
 --- !u!4 &2007873230
 Transform:
   m_ObjectHideFlags: 0
@@ -11278,7 +11280,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 700, y: 840}
+  m_SizeDelta: {x: 640, y: 840}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2948635705454338344
 CanvasRenderer:
