@@ -12,23 +12,24 @@ namespace Utilities {
         [SerializeField] Image _musicBtnImage;
         [SerializeField] AudioBasicConfigSO _basicConfigSo;
         [SerializeField] AudioSource _uiAudioSource;
+        [SerializeField] UiElementsConfigSO _elementsActiveness;
 
 
         bool _musicOn;
         void Start() {
             Debug.Log("Volume: " + PlayerPrefs.GetFloat("volume") + "; Music: " + PlayerPrefsHelper.GetBool("music") );
             
-            if (PanelManager.Instance.ElementsActiveness.volumeSliderActive) {
+            if (_elementsActiveness.volumeSliderActive) {
                 _volumeSlider.onValueChanged.RemoveAllListeners();
                 InitVolume();
                 _volumeSlider.onValueChanged.AddListener(SetMasterVolume);
             }
 
-            if (PanelManager.Instance.ElementsActiveness.soundButtonActive) {
+            if (_elementsActiveness.soundButtonActive) {
                 _soundBtnImage.sprite = PlayerPrefs.GetFloat("volume") <= 0 ? _soundBtnSprites[1] : _soundBtnSprites[0];
             }
 
-            if (PanelManager.Instance.ElementsActiveness.musicButtonActive) {
+            if (_elementsActiveness.musicButtonActive) {
                 _musicOn = PlayerPrefsHelper.GetBool("music", true);
                 _musicBtnImage.sprite = _musicOn ? _musicBtnSprites[0] : _musicBtnSprites[1];
                 if (PlayerPrefs.GetFloat("volume") <= 0) {
