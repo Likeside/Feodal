@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Utilities {
     [CreateAssetMenu(fileName = "AndsAndAnalyticsConfigSO", menuName = "Configs/AdsAndAnalyticsConfigSO", order = 5)]
-    public class AdsAndAnalyticsConfigSO: ScriptableObject {
+    public class AdsAndAnalyticsConfigSOX: ScriptableObject {
 
         public bool isActive;
         

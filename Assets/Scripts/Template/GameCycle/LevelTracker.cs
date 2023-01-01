@@ -5,7 +5,6 @@ namespace Utilities {
 
         public static int MaxLevels => 10;
 
-        public static int AdCounter = 0;
         public static string Version => "0.1";
     }
 }

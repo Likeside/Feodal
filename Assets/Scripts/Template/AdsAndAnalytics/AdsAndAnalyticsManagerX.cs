@@ -6,9 +6,9 @@ using UnityEngine.Advertisements;
 using UnityEngine.Analytics;
 
 namespace Utilities {
-    public class AdsAndAnalyticsManager: GlobalSingleton<AdsAndAnalyticsManager>, IUnityAdsListener {
+    public class AdsAndAnalyticsManagerX: GlobalSingleton<AdsAndAnalyticsManagerX>, IUnityAdsListener {
 
-        [SerializeField] AdsAndAnalyticsConfigSO _config;
+        [SerializeField] AdsAndAnalyticsConfigSOX _config;
 
         public event Action OnRewardedShown;
         public event Action OnInterstitialShown;

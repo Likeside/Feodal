@@ -13,7 +13,8 @@ namespace Template.AdsAndAnalytics {
         public event Action OnAdCanNotBeShown;
         public bool RewardedReady => Advertisement.IsReady(_rewarded);
         public int InterstitialFrequency => _config.interstitialFrequency;
-        
+
+        static int _adCounter;
         string _rewarded;
         string _interstitial;
         string _banner;
@@ -32,19 +33,28 @@ namespace Template.AdsAndAnalytics {
             Advertisement.AddListener(this);
         }
         
-                public void PlayInterstitial(Action completionCallBack) {
+        public void PlayInterstitial(Action completionCallBack, int level) {
             if (!_config.isActive) {
                 Debug.Log("Ad config is disabled, dummy interstitial action called");
                 completionCallBack?.Invoke();
                 return;
             }
             OnInterstitialShown = completionCallBack;
-            if (Advertisement.IsReady(_interstitial)) {
+            _adCounter++;
+            if (Advertisement.IsReady(_interstitial) && AdShouldBeShown(level, _adCounter)) {
                 Advertisement.Show(_interstitial);
             }
             else {
                 OnInterstitialShown?.Invoke();
             }
+        }
+        
+        bool AdShouldBeShown(int level, int adCounter) {
+            if (_adCounter % _config.interstitialFrequency == 0 && _adCounter > 0 &&
+                level > _config.interstitialFirstLevel) {
+                return true;
+            }
+            return false;
         }
 
         public void PlayRewarded(Action completionCallBack) {
