@@ -1,9 +1,8 @@
 {
-    "name": "Core",
+    "name": "Game",
     "rootNamespace": "",
     "references": [
-        "GUID:aa00104e63c863feaaad3ddbead4c774",
-        "GUID:d7fd788ea91474bf3a6e68ef134d9234"
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
