@@ -1,11 +1,11 @@
 namespace Game.CoreGameplay.Effect {
-    public class EffectModificationBase {
+    public class ModificationBase: IModification {
         
-       protected Number _number;
-       protected float _modification; 
+       protected readonly Number _number;
+       protected readonly float _modification; 
 
         
-        public EffectModificationBase(Number number, float modification) {
+        public ModificationBase(Number number, float modification) {
             _number = number;
             _modification = modification;
         }
