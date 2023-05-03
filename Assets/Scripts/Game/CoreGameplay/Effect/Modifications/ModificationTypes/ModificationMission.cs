@@ -3,10 +3,12 @@ using UnityEngine;
 namespace Game.CoreGameplay.Effect {
     public class ModificationMission: ModificationPending {
         
-        readonly string _successChance;
+        readonly string _successChanceFormula;
+        readonly float _successChanceValue;
         
-        public ModificationMission(string name, Number number, string modification, int turnsToComplete, string successChance) : base(name, number, modification, turnsToComplete) {
-            _successChance = successChance;
+        public ModificationMission(string name, Number number, string modificationFormula, int turnsToComplete, string successChanceFormula) : base(name, number, modificationFormula, turnsToComplete) {
+            _successChanceFormula = successChanceFormula;
+            Type = ModificationType.Mission;
         }
 
         public override void Modify() {
@@ -15,12 +17,12 @@ namespace Game.CoreGameplay.Effect {
                 return;
             }
             float success = Random.Range(0, 100);
-            /*
-            if (success < _successChance) {
+            
+            if (success < _successChanceValue) {
                 return;
             }
-            */
-          //  _number.Value.Value += _modification;
+            
+            _number.Value.Value += _modificationValue;
         }
     }
 }

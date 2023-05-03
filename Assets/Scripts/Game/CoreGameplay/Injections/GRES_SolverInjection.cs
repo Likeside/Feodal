@@ -21,20 +21,22 @@ namespace Game.CoreGameplay.Injections {
             _numbersValueHolder = numbersValueHolder;
         }
 
-        List<string> GetVariablesFromString(string formula) {
+        protected List<string> GetVariablesFromString(string formula) {
             _passedVariables ??= new List<string>();
             _passedVariables.Clear();
             
+            //TODO: ЗАМЕНИТЬ СПОСОБ ВЫЧЛЕНЕНИЯ ВАРАЕБЛОВ
             if (formula.Contains(_symbol)) {
                 var matches = Regex.Matches(formula, @"(?<={_symbol})\w+(?={_symbol})");
                 foreach (Match match in matches)
                     _passedVariables.Add(match.Value);
 
             }
+            ////
             return _passedVariables;
         }
 
-        float CalculateFormula(string formula) {
+        protected float CalculateFormula(string formula) {
             var variables = GetVariablesFromString(formula);
             
             if (variables.Count == 0) {
