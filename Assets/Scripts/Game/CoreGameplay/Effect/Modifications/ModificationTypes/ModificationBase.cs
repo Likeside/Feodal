@@ -31,6 +31,7 @@ namespace Game.CoreGameplay.Effect {
         }
 
         protected List<Number> GetNumberDependencies(string formula) {
+            if (!formula.Contains(_symbol)) return null;
             var numberDependencies = new List<Number>();
             foreach (var variable in GetVariablesFromString(formula)) {
                 numberDependencies.Add(_numbersValueHolder.GetNumber(variable));
@@ -43,6 +44,7 @@ namespace Game.CoreGameplay.Effect {
         }
 
         protected void SubscribeToDependency(List<Number> dependencies, Action subscription) {
+            if(dependencies == null) return;
             foreach (var numberDependency in dependencies) {
                 numberDependency.Value.Subscribe(_ => {
                     subscription?.Invoke();

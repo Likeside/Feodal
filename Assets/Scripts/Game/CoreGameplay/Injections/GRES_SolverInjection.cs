@@ -10,7 +10,7 @@ namespace Game.CoreGameplay.Injections {
         protected GRES_Solver _solver;
         protected List<string> _passedVariables;
         protected INumbersValueHolder _numbersValueHolder;
-        string _symbol;
+        protected string _symbol;
 
         [Inject]
         public void SetDisposable(GRES_Solver solver) {
