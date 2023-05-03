@@ -3,9 +3,9 @@ using UnityEngine;
 namespace Game.CoreGameplay.Effect {
     public class ModificationMission: ModificationPending {
         
-        readonly float _successChance;
+        readonly string _successChance;
         
-        public ModificationMission(string name, Number number, string modification, int turnsToComplete, float successChance) : base(name, number, modification, turnsToComplete) {
+        public ModificationMission(string name, Number number, string modification, int turnsToComplete, string successChance) : base(name, number, modification, turnsToComplete) {
             _successChance = successChance;
         }
 
@@ -15,9 +15,11 @@ namespace Game.CoreGameplay.Effect {
                 return;
             }
             float success = Random.Range(0, 100);
+            /*
             if (success < _successChance) {
                 return;
             }
+            */
           //  _number.Value.Value += _modification;
         }
     }

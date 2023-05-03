@@ -63,7 +63,7 @@ namespace Game.CoreGameplay.Effect {
             _modifications.Add( new ModificationPending(name, number, modification, turnsToComplete));
         }
 
-        public void AddModificationMission(string name, Number number, string modification, int turnsToComplete, float successChance) {
+        public void AddModificationMission(string name, Number number, string modification, int turnsToComplete, string successChance) {
             _modifications.Add( new ModificationMission(name, number, modification, turnsToComplete, successChance));
         }
 

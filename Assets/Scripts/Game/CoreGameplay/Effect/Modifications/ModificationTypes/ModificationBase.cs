@@ -1,5 +1,7 @@
+using Game.CoreGameplay.Injections;
+
 namespace Game.CoreGameplay.Effect {
-    public class ModificationBase: IModification {
+    public class ModificationBase: GRES_SolverInjection, IModification {
         
         protected string Name { get; private set; }
 
