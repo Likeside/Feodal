@@ -1,13 +1,19 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.CoreGameplay.Effect {
     public class ModificationMission: ModificationPending {
         
         readonly string _successChanceFormula;
-        readonly float _successChanceValue;
-        
+        float _successChanceValue;
+
+        List<Number> _successChanceFormulaDependencies;
+
         public ModificationMission(string name, Number number, string modificationFormula, int turnsToComplete, string successChanceFormula) : base(name, number, modificationFormula, turnsToComplete) {
             _successChanceFormula = successChanceFormula;
+            _successChanceValue = CalculateFormula(successChanceFormula);
+            _successChanceFormulaDependencies = GetNumberDependencies(successChanceFormula);
+            SubscribeToDependency(_successChanceFormulaDependencies, RecalculateSuccessChance);
             Type = ModificationType.Mission;
         }
 
@@ -21,8 +27,11 @@ namespace Game.CoreGameplay.Effect {
             if (success < _successChanceValue) {
                 return;
             }
-            
             _number.Value.Value += _modificationValue;
+        }
+
+        protected void RecalculateSuccessChance() {
+            _successChanceValue = CalculateFormula(_successChanceFormula);
         }
     }
 }

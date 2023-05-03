@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 using Zenject;
 
 namespace Game.CoreGameplay.Injections {
-    public class GRES_SolverInjection {
+    public class GRES_SolverInjection: DisposableInjection {
 
         protected GRES_Solver _solver;
         protected List<string> _passedVariables;
