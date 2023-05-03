@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Globalization;
+using System.Text;
 using System.Text.RegularExpressions;
 using Zenject;
 
@@ -8,6 +10,7 @@ namespace Game.CoreGameplay.Injections {
         protected GRES_Solver _solver;
         protected List<string> _passedVariables;
         protected INumbersValueHolder _numbersValueHolder;
+        string _symbol;
 
         [Inject]
         public void SetDisposable(GRES_Solver solver) {
@@ -22,8 +25,8 @@ namespace Game.CoreGameplay.Injections {
             _passedVariables ??= new List<string>();
             _passedVariables.Clear();
             
-            if (formula.Contains("")) {
-                var matches = Regex.Matches(formula, @"(?<=Q)\w+(?=Q)");
+            if (formula.Contains(_symbol)) {
+                var matches = Regex.Matches(formula, @"(?<={_symbol})\w+(?={_symbol})");
                 foreach (Match match in matches)
                     _passedVariables.Add(match.Value);
 
@@ -33,14 +36,21 @@ namespace Game.CoreGameplay.Injections {
 
         float CalculateFormula(string formula) {
             var variables = GetVariablesFromString(formula);
-
+            
             if (variables.Count == 0) {
                 _solver.SetExpression(formula);
                 _solver.Prepare();
                 return _solver.Evaluate();
             }
 
-            return 0;
+            string filteredFormula = formula.Replace(_symbol, "");
+            foreach (var variable in variables) {
+               filteredFormula = filteredFormula.Replace(variable, _numbersValueHolder.GetNumberValue(variable).ToString(CultureInfo.InvariantCulture));
+            }
+            
+            _solver.SetExpression(filteredFormula);
+            _solver.Prepare();
+            return _solver.Evaluate();
         }
     }
 }
