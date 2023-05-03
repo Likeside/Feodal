@@ -1,34 +1,54 @@
 using System.Collections.Generic;
+using System.Linq;
 using UniRx;
 
 namespace Game.CoreGameplay.Effect {
     public class Effect: DisposableInjection {
-
-
-        public List<ReactiveProperty<int>> TurnsToCompleteList = new List<ReactiveProperty<int>>();
-
-
+        
+        
+        
+        public readonly List<ReactiveProperty<int>> TurnsToCompleteList = new List<ReactiveProperty<int>>();
         readonly List<IModification> _modifications = new List<IModification>();
-
-
+        
         public Effect() {
-            /*
-            TurnsToComplete.Subscribe(
+       
+        }
+        public void ApplyEffect() {
+            foreach (var turns in TurnsToCompleteList) {
+                if (turns.Value > 0) {
+                    turns.Value--; //если изначальное количество ходов до окончания эффекта задать отрицательным, то эффект будет постоянным
+                }
+            }
+        }
+        public void AddEffect(int turns) {
+            var turnsProperty = new ReactiveProperty<int>(turns);
+            
+            //на каждое изменение количества ходов вызываем модификацию
+            turnsProperty.Subscribe(
                 _ => {
                     foreach (var modification in _modifications) {
                         modification.Modify();
                     }
                 }
             ).AddTo(_disposable);
-
-            TurnsToComplete
-                .Where(turns => turns == 0)
+            
+            //если количество оставшихся ходов равно нулю, удаляем свойство из списка, чтобы не вызывать модификации
+            turnsProperty.Where(t => t == 0)
                 .Subscribe(_ => {
-                    
+                    TurnsToCompleteList.Remove(turnsProperty);
                 }).AddTo(_disposable);
-                */
+            
+            //добавляем количество ходов до окончания эффекта в список количества ходов/количества эффектов
+            TurnsToCompleteList.Add(turnsProperty);
         }
-        
+        public void RemoveFirstEffect() {
+            TurnsToCompleteList.RemoveAt(0);
+        }
+        public void ClearEffects() {
+            TurnsToCompleteList.Clear();
+        }
+
+        //методы для эдитора для добавления модификаций в эффект. нужно придумать, как сериализовать
         public void AddModificationBase(Number number, float modification) {
             _modifications.Add(new ModificationBase(number, modification));
         }
@@ -41,9 +61,7 @@ namespace Game.CoreGameplay.Effect {
             _modifications.Add( new ModificationMission(number, modification, turnsToComplete, successChance));
         }
 
-        public void AddEffect() {
-            
-        }
+
         
     }
 }

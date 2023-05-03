@@ -9,7 +9,7 @@ namespace Game.CoreGameplay.Effect {
 
 
         CompositeDisposable _disposable;
-        public string Name { get; private set; }
+        public string Name { get; }
 
 
         float _minValue;
