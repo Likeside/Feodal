@@ -7,20 +7,21 @@ namespace Game.CoreGameplay.Effect {
         
         
         
-        public readonly List<ReactiveProperty<int>> TurnsToCompleteList = new List<ReactiveProperty<int>>();
+        public readonly ReactiveCollection<ReactiveProperty<int>> TurnsToCompleteList = new ReactiveCollection<ReactiveProperty<int>>();
         readonly List<IModification> _modifications = new List<IModification>();
         
         public Effect() {
        
         }
-        public void ApplyEffect() {
+        
+        public void ApplyAtEndOfTurn() {
             foreach (var turns in TurnsToCompleteList) {
                 if (turns.Value > 0) {
                     turns.Value--; //если изначальное количество ходов до окончания эффекта задать отрицательным, то эффект будет постоянным
                 }
             }
         }
-        public void AddEffect(int turns) {
+        public void Add(int turns) {
             var turnsProperty = new ReactiveProperty<int>(turns);
             
             //на каждое изменение количества ходов вызываем модификацию
@@ -41,14 +42,19 @@ namespace Game.CoreGameplay.Effect {
             //добавляем количество ходов до окончания эффекта в список количества ходов/количества эффектов
             TurnsToCompleteList.Add(turnsProperty);
         }
-        public void RemoveFirstEffect() {
+        public void RemoveFirst() {
+            _disposable.Remove(TurnsToCompleteList[0]);
             TurnsToCompleteList.RemoveAt(0);
         }
-        public void ClearEffects() {
+        public void Clear() {
+            foreach (var property in TurnsToCompleteList) {
+                _disposable.Remove(property);
+            }
             TurnsToCompleteList.Clear();
         }
 
         //методы для эдитора для добавления модификаций в эффект. нужно придумать, как сериализовать
+        //TODO: создавать где-то модификации отдельно, а потом раскидывать их по эффектам
         public void AddModificationBase(Number number, float modification) {
             _modifications.Add(new ModificationBase(number, modification));
         }
