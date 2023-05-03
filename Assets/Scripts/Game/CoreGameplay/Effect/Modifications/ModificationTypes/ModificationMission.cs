@@ -5,7 +5,7 @@ namespace Game.CoreGameplay.Effect {
         
         readonly float _successChance;
         
-        public ModificationMission(Number number, float modification, int turnsToComplete, float successChance) : base(number, modification, turnsToComplete) {
+        public ModificationMission(string name, Number number, string modification, int turnsToComplete, float successChance) : base(name, number, modification, turnsToComplete) {
             _successChance = successChance;
         }
 
@@ -18,7 +18,7 @@ namespace Game.CoreGameplay.Effect {
             if (success < _successChance) {
                 return;
             }
-            _number.Value.Value += _modification;
+          //  _number.Value.Value += _modification;
         }
     }
 }

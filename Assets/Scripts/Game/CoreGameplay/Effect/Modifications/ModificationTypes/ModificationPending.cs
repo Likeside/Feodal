@@ -5,7 +5,7 @@ namespace Game.CoreGameplay.Effect {
 
         protected int _turnsToComplete;
         
-        public ModificationPending(Number number, float modification, int turnsToComplete) : base(number, modification) {
+        public ModificationPending(string name, Number number, string modification, int turnsToComplete) : base(name, number, modification) {
             _turnsToComplete = turnsToComplete;
         }
 

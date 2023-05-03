@@ -3,15 +3,13 @@ using Zenject;
 
 namespace Game.CoreGameplay.Effect {
     public class Number: DisposableInjection {
+        
         public ReactiveProperty<float> Value = new ReactiveProperty<float>();
         public ReactiveProperty<bool> UnderMinValue = new ReactiveProperty<bool>();
         public ReactiveProperty<bool> OverMaxValue = new ReactiveProperty<bool>();
-
-
-        CompositeDisposable _disposable;
+        
         public string Name { get; }
-
-
+        
         float _minValue;
         float _maxValue;
         float _initValue;

@@ -55,16 +55,16 @@ namespace Game.CoreGameplay.Effect {
 
         //методы для эдитора для добавления модификаций в эффект. нужно придумать, как сериализовать
         //TODO: создавать где-то модификации отдельно, а потом раскидывать их по эффектам
-        public void AddModificationBase(Number number, float modification) {
-            _modifications.Add(new ModificationBase(number, modification));
+        public void AddModificationBase(string name, Number number, string modification) {
+            _modifications.Add(new ModificationBase(name, number, modification));
         }
 
-        public void AddModificationPending(Number number, float modification, int turnsToComplete) {
-            _modifications.Add( new ModificationPending(number, modification, turnsToComplete));
+        public void AddModificationPending(string name, Number number, string modification, int turnsToComplete) {
+            _modifications.Add( new ModificationPending(name, number, modification, turnsToComplete));
         }
 
-        public void AddModificationMission(Number number, float modification, int turnsToComplete, float successChance) {
-            _modifications.Add( new ModificationMission(number, modification, turnsToComplete, successChance));
+        public void AddModificationMission(string name, Number number, string modification, int turnsToComplete, float successChance) {
+            _modifications.Add( new ModificationMission(name, number, modification, turnsToComplete, successChance));
         }
 
 
