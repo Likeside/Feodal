@@ -4,14 +4,19 @@ using UniRx;
 
 namespace Game.CoreGameplay.Effect {
     public class Effect: DisposableInjection {
+        public string Name { get; }
+        public List<string> ModificationsName { get; }
+        public readonly ReactiveCollection<ReactiveProperty<int>> TurnsToCompleteList = new();
+        readonly List<IModification> _modifications;
+        int _initTurns;
+        Number _turnModificatorNumber;
         
-        
-        
-        public readonly ReactiveCollection<ReactiveProperty<int>> TurnsToCompleteList = new ReactiveCollection<ReactiveProperty<int>>();
-        readonly List<IModification> _modifications = new List<IModification>();
-        
-        public Effect() {
-       
+        public Effect(List<IModification> modifications, string name, int initTurns, Number turnModificatorNumber) {
+            _modifications = modifications;
+            Name = name;
+            _initTurns = initTurns;
+            _turnModificatorNumber = turnModificatorNumber;
+            ModificationsName = _modifications.Select(m => m.Name).ToList();
         }
         
         public void ApplyAtEndOfTurn() {
@@ -21,7 +26,10 @@ namespace Game.CoreGameplay.Effect {
                 }
             }
         }
-        public void Add(int turns) {
+        
+        //вызывать этот метод при активации эффекта
+        public void Add() {
+            var turns = _initTurns + (int)_turnModificatorNumber.Value.Value;
             var turnsProperty = new ReactiveProperty<int>(turns);
             
             //на каждое изменение количества ходов вызываем модификацию
@@ -52,22 +60,5 @@ namespace Game.CoreGameplay.Effect {
             }
             TurnsToCompleteList.Clear();
         }
-
-        //методы для эдитора для добавления модификаций в эффект. нужно придумать, как сериализовать
-        //TODO: создавать где-то модификации отдельно, а потом раскидывать их по эффектам
-        public void AddModificationBase(string name, Number number, string modificationFormula) {
-            _modifications.Add(new ModificationBase(name, number, modificationFormula));
-        }
-
-        public void AddModificationPending(string name, Number number, string modificationFormula, int turnsToComplete) {
-            _modifications.Add( new ModificationPending(name, number, modificationFormula, turnsToComplete));
-        }
-
-        public void AddModificationMission(string name, Number number, string modificationFormula, int turnsToComplete, string successChance) {
-            _modifications.Add( new ModificationMission(name, number, modificationFormula, turnsToComplete, successChance));
-        }
-
-
-        
     }
 }

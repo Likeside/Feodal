@@ -1,3 +1,4 @@
+using Game.CoreGameplay.Effect;
 using UnityEngine;
 
 namespace Game.CoreGameplay.Injections {
@@ -17,6 +18,8 @@ namespace Game.CoreGameplay.Injections {
 
         public string GetEffectDescriptionByName(string effectName);
         public string GetEffectSubdescriptionByName(string effectName);
+
+        public EffectType GetEffectTypeByName(string effectName);
         
         public string GetCardDescriptionByName(string cardName);
 
