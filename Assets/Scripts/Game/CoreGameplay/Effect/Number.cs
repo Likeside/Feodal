@@ -1,8 +1,11 @@
+using System;
+using System.Collections.Generic;
+using Game.CoreGameplay.Injections;
 using UniRx;
 using Zenject;
 
 namespace Game.CoreGameplay.Effect {
-    public class Number: DisposableInjection {
+    public class Number: GRES_SolverInjection {
         
         public ReactiveProperty<float> Value = new ReactiveProperty<float>();
         public ReactiveProperty<bool> UnderMinValue = new ReactiveProperty<bool>();
@@ -13,8 +16,10 @@ namespace Game.CoreGameplay.Effect {
         float _minValue;
         float _maxValue;
         float _initValue;
+        string _formula;
         
-        public Number(string name, float minValue, float maxValue, float initValue) {
+
+        public Number(string name, float initValue, float minValue = float.MinValue, float maxValue = float.MaxValue, string formula = "") {
             Name = name;
             _minValue = minValue;
             _maxValue = maxValue;
@@ -23,6 +28,13 @@ namespace Game.CoreGameplay.Effect {
                 CheckIfInBoundaries();
             }).AddTo(_disposable);
             Value.Value = _initValue;
+
+            if (formula != String.Empty) {
+                _formula = formula;
+                _formulaDependencies = GetNumberDependencies(formula);
+                SubscribeToDependency(_formulaDependencies, CalculateValue);
+                CalculateValue();
+            }
         }
 
         void CheckIfInBoundaries() {
@@ -34,6 +46,10 @@ namespace Game.CoreGameplay.Effect {
         protected virtual void SetToCorrectValue() {
             if (UnderMinValue.Value) Value.Value = _minValue;
             if (OverMaxValue.Value) Value.Value = _maxValue;
+        }
+
+        protected void CalculateValue() {
+            Value.Value = CalculateFormula(_formula);
         }
 
         public void SetToInitValue() {

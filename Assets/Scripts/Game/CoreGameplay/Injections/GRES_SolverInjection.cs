@@ -14,6 +14,9 @@ namespace Game.CoreGameplay.Injections {
         protected List<string> _passedVariables;
         protected INumbersValueHolder _numbersValueHolder;
         protected string _symbol;
+        
+        protected List<Number> _formulaDependencies;
+
 
         [Inject]
         public void SetDisposable(GRES_Solver solver) {

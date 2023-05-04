@@ -13,9 +13,7 @@ namespace Game.CoreGameplay.Effect {
        protected readonly string _modificationFormula;
        protected float _modificationValue;
 
-       List<Number> _formulaDependencies;
-
-
+       
         public ModificationBase(string name, Number number, string modificationFormula) {
              Name = name;
             _number = number;
