@@ -30,27 +30,13 @@ namespace Game.CoreGameplay.Effect {
             _number.Value.Value += _modificationValue;
         }
 
-        protected List<Number> GetNumberDependencies(string formula) {
-            if (!formula.Contains(_symbol)) return null;
-            var numberDependencies = new List<Number>();
-            foreach (var variable in GetVariablesFromString(formula)) {
-                numberDependencies.Add(_numbersValueHolder.GetNumber(variable));
-            }
-            return numberDependencies;
-        }
+
 
         protected void RecalculateModification() {
             _modificationValue = CalculateFormula(_modificationFormula);
         }
 
-        protected void SubscribeToDependency(List<Number> dependencies, Action subscription) {
-            if(dependencies == null) return;
-            foreach (var numberDependency in dependencies) {
-                numberDependency.Value.Subscribe(_ => {
-                    subscription?.Invoke();
-                }).AddTo(_disposable);
-            } 
-        }
+
 
     }
 }

@@ -1,7 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
+using Game.CoreGameplay.Effect;
+using UniRx;
 using Zenject;
 
 namespace Game.CoreGameplay.Injections {
@@ -53,6 +56,24 @@ namespace Game.CoreGameplay.Injections {
             _solver.SetExpression(filteredFormula);
             _solver.Prepare();
             return _solver.Evaluate();
+        }
+        
+        protected List<Number> GetNumberDependencies(string formula) {
+            if (!formula.Contains(_symbol)) return null;
+            var numberDependencies = new List<Number>();
+            foreach (var variable in GetVariablesFromString(formula)) {
+                numberDependencies.Add(_numbersValueHolder.GetNumber(variable));
+            }
+            return numberDependencies;
+        }
+        
+        protected void SubscribeToDependency(List<Number> dependencies, Action subscription) {
+            if(dependencies == null) return;
+            foreach (var numberDependency in dependencies) {
+                numberDependency.Value.Subscribe(_ => {
+                    subscription?.Invoke();
+                }).AddTo(_disposable);
+            } 
         }
     }
 }
