@@ -15,22 +15,22 @@ public class GameController : LocalSingleton<GameController> {
         [SerializeField] ButtonManager _buttonManager;
         [SerializeField] JSONDataPathsContainer _dataPathsContainer;
         [SerializeField] DummyDisplay _display;
-
-        protected IDataHolder _holder;
         
-        [Inject]
-        public void SetDataHolder(IDataHolder holder) {
-                _holder = holder;
-        }
+       
+        IDataHolder _holder;
 
         List<Card> _cardsInSlot;
+
+        void Awake() {
+                GameInstallerS.Install(new DiContainer());
+        }
 
         void Start() { 
                 //TODO: Отписываться в определенный момент игры
                 if (_buttonManager.TipButtonActive) _buttonManager.OnTipButtonPressed += TipButtonPressed;
                 if (_buttonManager.PauseButtonActive) _buttonManager.OnTipButtonPressed += PauseButtonPressed;
                 if (PanelManager.Instance.ElementsActiveness.rateUsPanelActive) ExternalLinksManager.Instance.OnRateUsLinkOpened += RateUsLinkOpened;
-
+                
                 Debug.Log("Init creator");
                 Creator creator = new Creator();
                 Debug.Log("Loading datas");

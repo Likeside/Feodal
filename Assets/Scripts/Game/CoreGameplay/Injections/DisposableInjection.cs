@@ -5,14 +5,19 @@ using Zenject;
 namespace Game.CoreGameplay {
     public class DisposableInjection {
 
+        [Inject]
         protected CompositeDisposable _disposable;
         
-        [Inject]
+        
+        /*
+        [Inject] 
         public void SetDisposable(CompositeDisposable compositeDisposable) {
             bool compositeDisposableNull = compositeDisposable == null;
             Debug.Log("Setting disposable, is null:" + compositeDisposableNull);
         
             _disposable = compositeDisposable;
         }
+        */
+
     }
 }

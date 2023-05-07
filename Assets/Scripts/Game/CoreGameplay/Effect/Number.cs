@@ -6,7 +6,7 @@ using UnityEngine;
 using Zenject;
 
 namespace Game.CoreGameplay.Effect {
-    public class Number: GRES_SolverInjection {
+    public class Number: GRES_SolverInjection, IInitializable {
         
         public ReactiveProperty<float> Value = new ReactiveProperty<float>();
         public ReactiveProperty<bool> UnderMinValue = new ReactiveProperty<bool>();
@@ -25,17 +25,24 @@ namespace Game.CoreGameplay.Effect {
             _minValue = minValue;
             _maxValue = maxValue;
             _initValue = initValue;
+            /*
+            if (_disposable == null) {
+                Debug.Log("Disposable null from number: " + Name);
+            }
             Value.Subscribe(v => {
                 CheckIfInBoundaries();
             }).AddTo(_disposable);
             Value.Value = _initValue;
-
+            */
+            _formula = formula;
+            /*
             if (formula != String.Empty) {
                 _formula = formula;
                 _formulaDependencies = GetNumberDependencies(formula);
                 SubscribeToDependency(_formulaDependencies, CalculateValue);
                 CalculateValue();
             }
+            */
         }
 
         void CheckIfInBoundaries() {
@@ -56,6 +63,22 @@ namespace Game.CoreGameplay.Effect {
 
         public void SetToInitValue() {
             Value.Value = _initValue;
+        }
+
+        public void Initialize() {
+            Debug.Log("Initializing number: " + Name);
+            if (_disposable == null) {
+                Debug.Log("Disposable null from number: " + Name);
+            }
+            Value.Subscribe(v => {
+                CheckIfInBoundaries();
+            }).AddTo(_disposable);
+            Value.Value = _initValue;
+            if (_formula != String.Empty) {
+                _formulaDependencies = GetNumberDependencies(_formula);
+                SubscribeToDependency(_formulaDependencies, CalculateValue);
+                CalculateValue();
+            }
         }
     }
 }

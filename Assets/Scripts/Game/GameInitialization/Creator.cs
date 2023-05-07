@@ -19,6 +19,7 @@ namespace Game {
         List<Card> _cards;
         List<RandomEvent> _events;
         
+        
         public void LoadDatas(JSONDataPathsContainer dataPathsContainer) {
 
             _numbersJson = new NumbersJSON();
@@ -47,6 +48,7 @@ namespace Game {
            _cards = new List<Card>();
            _events = new List<RandomEvent>();
            CreateNumbers();
+           if(_holder == null) Debug.Log("Holder null");
            _holder.PassNumbers(_numbers, _numbersJson.NumberJsonDatas);
            CreateModifications(); 
            _holder.PassModifications(_modifications, _modificationsJson.ModificationJsonDatas);
@@ -122,6 +124,6 @@ namespace Game {
                    _holder.GetNumber(data.probabilityNumberName)));
            }
        }
-       
+
     }
 }
