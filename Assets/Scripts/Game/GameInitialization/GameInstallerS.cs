@@ -3,7 +3,7 @@ using Game.CoreGameplay.Injections;
 using UniRx;
 
 namespace Game {
-    public class GameInstaller: MonoInstaller {
+    public class GameInstallerS: MonoInstaller {
             public override void InstallBindings() {
                 Container.Bind<IDataHolder>().To<Holder>().AsSingle();
                 Container.Bind<GRES_Solver>().To<GRES_Solver>().AsSingle();

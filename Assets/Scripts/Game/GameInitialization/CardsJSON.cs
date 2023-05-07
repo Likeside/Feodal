@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Game {
     [Serializable]
     public class CardsJSON: JSONData {
+        [JsonProperty("CardJsonDatas")]
         public List<CardJSONData> CardJsonDatas;
 
         public override void Load(string path) {
