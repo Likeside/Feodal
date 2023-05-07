@@ -11,7 +11,7 @@ namespace Game.CoreGameplay.Injections {
 
         protected GRES_Solver _solver;
         protected List<string> _passedVariables;
-        protected INumbersValueHolder _numbersValueHolder;
+        protected IDataHolder _numbersValueHolder;
         protected string _symbol;
         
         protected List<Number> _formulaDependencies;
@@ -21,7 +21,7 @@ namespace Game.CoreGameplay.Injections {
             _solver = solver;
         }
         [Inject]
-        public void SetNumbersValueHolder(INumbersValueHolder numbersValueHolder) {
+        public void SetNumbersValueHolder(IDataHolder numbersValueHolder) {
             _numbersValueHolder = numbersValueHolder;
         }
 

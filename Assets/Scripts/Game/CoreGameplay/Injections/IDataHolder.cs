@@ -1,9 +1,25 @@
+using System.Collections.Generic;
 using Game.CoreGameplay.Effect;
 using UnityEngine;
 
 namespace Game.CoreGameplay.Injections {
-    public interface IViewDataHolder {
+    public interface IDataHolder {
         
+        public void PassNumbers(List<Number> numbers, List<NumberJSONData> numberJsonDatas);
+
+        public void PassModifications(List<ModificationBase> modifications, List<ModificationJSONData> modificationJsonDatas);
+
+        public void PassEffects(List<Effect.Effect> effects, List<EffectJSONData> effectJsonDatas);
+
+        public void PassCards(List<Card> cards, List<CardJSONData> cardJsonDatas);
+
+        public void PassEvent(List<RandomEvent> events, List<EventsJSONData> eventsJsonDatas);
+        
+        public float GetNumberValue(string numberName);
+
+        public Number GetNumber(string numberName);
+
+        public IModification GetModificationByName(string modificationName);
         public Sprite GetModificationIconByName(string modificationName);
 
         public Sprite GetModificationBorderByName(string modificationName);

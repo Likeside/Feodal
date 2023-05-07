@@ -3,13 +3,16 @@ using System.Collections.Generic;
 
 namespace Game {
     [Serializable]
-    public class EventsJSON {
+    public class EventsJSON: JSONData {
         public List<EventsJSONData> EventsJsonDatas;
+        public override void Load(string path) {
+            throw new NotImplementedException();
+        }
     }
 
     [Serializable]
     public class EventsJSONData {
-        string effectCountNumberName;
-        string probabilityNumberName;
+        public string effectCountNumberName;
+        public string probabilityNumberName;
     }
 }

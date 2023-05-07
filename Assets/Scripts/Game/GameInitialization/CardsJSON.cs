@@ -3,15 +3,19 @@ using System.Collections.Generic;
 
 namespace Game {
     [Serializable]
-    public class CardsJSON {
+    public class CardsJSON: JSONData {
         public List<CardJSONData> CardJsonDatas;
+
+        public override void Load(string path) {
+            throw new NotImplementedException();
+        }
     }
 
     [Serializable]
     public class CardJSONData {
-        string effectCountNumberName;
-        Dictionary<string, float> initCosts;
-        string availabilityNumberName;
-        float availabilityParameter;
+        public string effectCountNumberName;
+        public  Dictionary<string, float> initCosts;
+        public string availabilityNumberName;
+        public float availabilityParameter;
     }
 }

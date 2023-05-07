@@ -3,24 +3,27 @@ using System.Collections.Generic;
 
 namespace Game {
     [Serializable]
-    public class ModificationsJSON {
+    public class ModificationsJSON: JSONData {
         public List<ModificationJSONData> ModificationJsonDatas;
+        public override void Load(string path) {
+            throw new NotImplementedException();
+        }
     }
     
     
     [Serializable]
     public class ModificationJSONData {
 
-        string type;
-        string name;
-        string numberToModifyName;
-        string modificationFormula;
+        public string type;
+        public string name;
+        public string numberToModifyName;
+        public  string modificationFormula;
 
         //pending+mission
-        int turnsToComplete;
-        string successChanceFormula;
-        string imageAssetLink;
-        string borderAssetLink;
+        public int turnsToComplete;
+        public string successChanceFormula;
+        public string imageAssetLink;
+        public string borderAssetLink;
         
     }
 }
