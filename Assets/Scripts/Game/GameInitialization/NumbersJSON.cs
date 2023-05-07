@@ -1,12 +1,15 @@
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using UnityEngine;
 
 namespace Game {
     [Serializable]
     public class NumbersJSON: JSONData {
         public List<NumberJSONData> NumberJsonDatas;
         public override void Load(string path) {
-            throw new NotImplementedException();
+            var jsonText = Resources.Load<TextAsset>(path);
+            NumberJsonDatas = JsonConvert.DeserializeObject<NumbersJSON>(jsonText.text)?.NumberJsonDatas; 
         }
     }
 

@@ -4,6 +4,8 @@ using Random = UnityEngine.Random;
 namespace Game.CoreGameplay.Effect {
     public class RandomEvent {
         public string Name { get; }
+
+        public float EffectCount => _effectCount.Value.Value; //убрать, это для дисплей теста
         
         Number _probability;
         Number _effectCount;

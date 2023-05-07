@@ -1,12 +1,15 @@
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using UnityEngine;
 
 namespace Game {
     [Serializable]
     public class EffectsJSON: JSONData {
         public List<EffectJSONData> EffectJsonDatas;
         public override void Load(string path) {
-            throw new NotImplementedException();
+            var jsonText = Resources.Load<TextAsset>(path);
+            EffectJsonDatas = JsonConvert.DeserializeObject<EffectsJSON>(jsonText.text)?.EffectJsonDatas;
         }
     }
 

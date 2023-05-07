@@ -14,6 +14,7 @@ public class GameController : LocalSingleton<GameController> {
         
         [SerializeField] ButtonManager _buttonManager;
         [SerializeField] JSONDataPathsContainer _dataPathsContainer;
+        [SerializeField] DummyDisplay _display;
 
         protected IDataHolder _holder;
         
@@ -73,5 +74,11 @@ public class GameController : LocalSingleton<GameController> {
                 foreach (var randomEvent in _holder.RandomEvents) {
                         randomEvent.TryToApplyEvent();
                 }
+                
+                _display.DisplayCards(_holder.Cards);
+                _display.DisplayEffects(_holder.Effects);
+                _display.DisplayEvents(_holder.RandomEvents);
+                _display.DisplayNumbers(_holder.Numbers);
+                
         }
 }

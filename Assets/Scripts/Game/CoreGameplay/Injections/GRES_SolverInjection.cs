@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using Game.CoreGameplay.Effect;
 using UniRx;
+using UnityEngine;
 using Zenject;
 
 namespace Game.CoreGameplay.Injections {
@@ -33,8 +34,10 @@ namespace Game.CoreGameplay.Injections {
             //TODO: ЗАМЕНИТЬ СПОСОБ ВЫЧЛЕНЕНИЯ ВАРАЕБЛОВ
             if (formula.Contains(_startSymbol)) {
                 var matches = Regex.Matches(formula, $"{Regex.Escape(_startSymbol)}(.*?){Regex.Escape(_endSymbol)}"); // @"(?<={_symbol})\w+(?={_symbol})");
-                foreach (Match match in matches)
+                foreach (Match match in matches) {
                     _passedVariables.Add(match.Groups[1].Value);
+                    Debug.Log("Added variable: " + match.Groups[1].Value);
+                }
 
             }
             ////

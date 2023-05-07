@@ -20,6 +20,14 @@ namespace Game {
         List<RandomEvent> _events;
         
         public void LoadDatas(JSONDataPathsContainer dataPathsContainer) {
+
+            _numbersJson = new NumbersJSON();
+            _modificationsJson = new ModificationsJSON();
+            _effectsJson = new EffectsJSON();
+            _cardsJson = new CardsJSON();
+            _effectsJson = new EffectsJSON();
+            //TODO: заменить на дженерик, грузить при инициализации класса
+            
             _numbersJson.Load(dataPathsContainer.numbersPath);
             _modificationsJson.Load(dataPathsContainer.modificationsPath);
             _effectsJson.Load(dataPathsContainer.effectsPath);
