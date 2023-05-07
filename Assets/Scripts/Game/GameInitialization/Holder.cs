@@ -6,7 +6,13 @@ using UnityEngine;
 
 namespace Game {
     public class Holder: IDataHolder {
-        
+
+        public List<Number> Numbers => _numbers;
+
+        public List<Effect> Effects => _effects;
+        public List<Card> Cards => _cards;
+        public List<RandomEvent> RandomEvents => _events;
+
         List<Number> _numbers;
         List<ModificationBase> _modifications;
         List<Effect> _effects;

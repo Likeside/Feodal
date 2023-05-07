@@ -12,7 +12,8 @@ namespace Game.CoreGameplay.Injections {
         protected GRES_Solver _solver;
         protected List<string> _passedVariables;
         protected IDataHolder _numbersValueHolder;
-        protected string _symbol;
+        protected string _startSymbol;
+        protected string _endSymbol;
         
         protected List<Number> _formulaDependencies;
         
@@ -30,10 +31,10 @@ namespace Game.CoreGameplay.Injections {
             _passedVariables.Clear();
             
             //TODO: ЗАМЕНИТЬ СПОСОБ ВЫЧЛЕНЕНИЯ ВАРАЕБЛОВ
-            if (formula.Contains(_symbol)) {
-                var matches = Regex.Matches(formula, @"(?<={_symbol})\w+(?={_symbol})");
+            if (formula.Contains(_startSymbol)) {
+                var matches = Regex.Matches(formula, $"{Regex.Escape(_startSymbol)}(.*?){Regex.Escape(_endSymbol)}"); // @"(?<={_symbol})\w+(?={_symbol})");
                 foreach (Match match in matches)
-                    _passedVariables.Add(match.Value);
+                    _passedVariables.Add(match.Groups[1].Value);
 
             }
             ////
@@ -49,7 +50,8 @@ namespace Game.CoreGameplay.Injections {
                 return _solver.Evaluate();
             }
 
-            string filteredFormula = formula.Replace(_symbol, "");
+            string filteredFormula = formula.Replace(_startSymbol, "");
+            filteredFormula = filteredFormula.Replace(_endSymbol, "");
             foreach (var variable in variables) {
                filteredFormula = filteredFormula.Replace(variable, _numbersValueHolder.GetNumberValue(variable).ToString(CultureInfo.InvariantCulture));
             }
@@ -60,7 +62,7 @@ namespace Game.CoreGameplay.Injections {
         }
         
         protected List<Number> GetNumberDependencies(string formula) {
-            if (!formula.Contains(_symbol)) return null;
+            if (!formula.Contains(_startSymbol)) return null;
             var numberDependencies = new List<Number>();
             foreach (var variable in GetVariablesFromString(formula)) {
                 numberDependencies.Add(_numbersValueHolder.GetNumber(variable));

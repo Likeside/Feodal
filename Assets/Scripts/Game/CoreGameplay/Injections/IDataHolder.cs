@@ -5,6 +5,12 @@ using UnityEngine;
 namespace Game.CoreGameplay.Injections {
     public interface IDataHolder {
         
+        public List<Number> Numbers { get; }
+
+        public List<Effect.Effect> Effects { get; }
+        public List<Card> Cards { get; }
+        public List<RandomEvent> RandomEvents { get; }
+        
         public void PassNumbers(List<Number> numbers, List<NumberJSONData> numberJsonDatas);
 
         public void PassModifications(List<ModificationBase> modifications, List<ModificationJSONData> modificationJsonDatas);
