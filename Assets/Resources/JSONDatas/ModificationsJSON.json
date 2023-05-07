@@ -1,14 +1,44 @@
 {
   "ModificationJsonDatas": [
     {
-      "type": "",
-      "name": "",
-      "numberToModifyName": "",
-      "modificationFormula": "",
-      "turnsToComplete": 0,
+      "type": "basic",
+      "name": "BasicDummy",
+      "numberToModifyName": "DummyToModify",
+      "modificationFormula": "0+1",
+      "turnsToComplete": "",
       "successChanceFormula": "",
       "imageAssetLink": "",
       "borderAssetLink": ""
-    }
+    }, 
+    {
+      "type": "pending",
+      "name": "PendingDummy",
+      "numberToModifyName": "DummyToModify",
+      "modificationFormula": "0+1",
+      "turnsToComplete": "3",
+      "successChanceFormula": "",
+      "imageAssetLink": "",
+      "borderAssetLink": ""
+    },
+    {
+      "type": "mission",
+      "name": "MissionDummy",
+      "numberToModifyName": "DummyToModify",
+      "modificationFormula": "0+1",
+      "turnsToComplete": "3",
+      "successChanceFormula": "0+50",
+      "imageAssetLink": "",
+      "borderAssetLink": ""
+    },
+    {
+      "type": "static",
+      "name": "StaticDummy",
+      "numberToModifyName": "DummyToModify",
+      "modificationFormula": "<BasicDummy>+<CardAvailabilityDummy>",
+      "turnsToComplete": "",
+      "successChanceFormula": "",
+      "imageAssetLink": "",
+      "borderAssetLink": ""
+    },
   ]
 }

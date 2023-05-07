@@ -1,10 +1,28 @@
 {
   "CardJsonDatas": [
     {
-      "effectCountNumberName": "",
-      "initCosts": {},
-      "availabilityNumberName": "",
-      "availabilityParameter": 0.0
+      "effectCountNumberName": "BasicDummy",
+      "initCosts": {"Gold":  10},
+      "availabilityNumberName": "CardAvailabilityDummy",
+      "availabilityParameter": 1
+    }, 
+    {
+      "effectCountNumberName": "MissionDummy",
+      "initCosts": {"Gold":  20},
+      "availabilityNumberName": "CardAvailabilityDummy",
+      "availabilityParameter": 1
+    },  
+    {
+      "effectCountNumberName": "StaticDummy",
+      "initCosts": {"Gold":  5},
+      "availabilityNumberName": "CardAvailabilityDummy",
+      "availabilityParameter": 1
+    }, 
+    {
+      "effectCountNumberName": "PendingDummy",
+      "initCosts": {"Gold":  30},
+      "availabilityNumberName": "CardAvailabilityDummy",
+      "availabilityParameter": 1
     }
   ]
 }

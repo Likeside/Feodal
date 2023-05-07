@@ -13,8 +13,8 @@ namespace Game.CoreGameplay.Injections {
         protected GRES_Solver _solver;
         protected List<string> _passedVariables;
         protected IDataHolder _numbersValueHolder;
-        protected string _startSymbol = "[";
-        protected string _endSymbol = "]";
+        protected string _startSymbol = "<";
+        protected string _endSymbol = ">";
 
         protected List<Number> _formulaDependencies;
         

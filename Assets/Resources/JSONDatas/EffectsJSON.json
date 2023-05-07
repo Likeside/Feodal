@@ -1,11 +1,44 @@
 {
   "EffectJsonDatas": [
     {
-      "type": "",
-      "countNumberName": "",
-      "modificationsName": [],
+      "type": "Dummy",
+      "countNumberName": "BasicDummy",
+      "modificationsName": ["BasicDummy"],
       "initTurns": 0,
-      "turnModificationNumberName": "",
+      "turnModificationNumberName": "TurnModificatorNumber",
+      "description": "",
+      "subdescription": "",
+      "imageAssetLink": "",
+      "borderAssetLink": ""
+    }, 
+    {
+      "type": "Dummy",
+      "countNumberName": "MissionDummy",
+      "modificationsName": ["MissionDummy"],
+      "initTurns": 3,
+      "turnModificationNumberName": "TurnModificatorNumber",
+      "description": "",
+      "subdescription": "",
+      "imageAssetLink": "",
+      "borderAssetLink": ""
+    }, 
+    {
+      "type": "Dummy",
+      "countNumberName": "PendingDummy",
+      "modificationsName": ["PendingDummy"],
+      "initTurns": 3,
+      "turnModificationNumberName": "TurnModificatorNumber",
+      "description": "",
+      "subdescription": "",
+      "imageAssetLink": "",
+      "borderAssetLink": ""
+    },
+    {
+      "type": "Dummy",
+      "countNumberName": "StaticDummy",
+      "modificationsName": ["StaticDummy"],
+      "initTurns": 0,
+      "turnModificationNumberName": "TurnModificatorNumber",
       "description": "",
       "subdescription": "",
       "imageAssetLink": "",

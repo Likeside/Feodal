@@ -1,11 +1,75 @@
 {
   "NumberJsonDatas": [
     {
-      "name": "",
+      "name": "BasicDummy",
       "initValue": 0.0,
       "minValue": 0.0,
-      "maxValue": 0.0,
+      "maxValue": 100,
+      "formula": ""
+    },  
+    {
+      "name": "StaticDummy",
+      "initValue": 0.0,
+      "minValue": 0.0,
+      "maxValue": 100,
+      "formula": ""
+    }, 
+    {
+      "name": "MissionDummy",
+      "initValue": 0.0,
+      "minValue": 0.0,
+      "maxValue": 100,
+      "formula": ""
+    },   
+    {
+      "name": "PendingDummy",
+      "initValue": 0.0,
+      "minValue": 0.0,
+      "maxValue": 100,
+      "formula": ""
+    },   
+    {
+      "name": "FormulaDummy",
+      "initValue": 0.0,
+      "minValue": -999999,
+      "maxValue": 9999999,
+      "formula": "<BasicDummy>+<StaticDummy>"
+    },
+    {
+      "name": "CardAvailabilityDummy",
+      "initValue": 1,
+      "minValue": -999999,
+      "maxValue": 9999999,
+      "formula": ""
+    },
+    {
+      "name": "DummyToModify",
+      "initValue": 0,
+      "minValue": -999999,
+      "maxValue": 9999999,
+      "formula": ""
+    },
+    {
+      "name": "TurnModificatorNumber",
+      "initValue": 0,
+      "minValue": -999999,
+      "maxValue": 9999999,
+      "formula": ""
+    },
+    {
+      "name": "BasicProbabilityNumber",
+      "initValue": 50,
+      "minValue": -999999,
+      "maxValue": 9999999,
+      "formula": ""
+    },
+    {
+      "name": "Gold",
+      "initValue": 500,
+      "minValue": -999999,
+      "maxValue": 9999999,
       "formula": ""
     }
+    
   ]
 }
