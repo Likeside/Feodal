@@ -18,6 +18,7 @@ namespace Game.CoreGameplay.Effect {
         }
 
         public override void Modify() {
+            Report();
             if (_turnsToComplete > 0) {
                 _turnsToComplete--;
                 return;

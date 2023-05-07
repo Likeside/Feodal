@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Game.CoreGameplay.Injections;
 using UniRx;
+using UnityEngine;
 using Zenject;
 
 namespace Game.CoreGameplay.Effect {
@@ -38,6 +39,7 @@ namespace Game.CoreGameplay.Effect {
         }
 
         void CheckIfInBoundaries() {
+            Debug.Log("Changed value of number: " + Name + " to: " + Value.Value);
             UnderMinValue.Value = Value.Value < _minValue;
             OverMaxValue.Value = Value.Value > _maxValue;
             SetToCorrectValue();

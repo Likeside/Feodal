@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Game.CoreGameplay.Injections;
 using UniRx;
+using UnityEngine;
 
 namespace Game.CoreGameplay.Effect {
     public class Card: GRES_SolverInjection {
@@ -39,16 +40,19 @@ namespace Game.CoreGameplay.Effect {
         }
 
         public void ApplyAtEndOfTurn() {
+            Debug.Log("Applied card: " + Name);
             _effectCount.Value.Value++;
         }
 
-        void PayCost() {
+       public void PayCost() {
+           Debug.Log("Paid cost of card: " + Name);
             foreach (var cost in _initCosts) {
                 cost.Key.Value.Value -= cost.Value;
             }
         }
 
-        void RestoreCostBeforeEndOfTurn() {
+       public void RestoreCostBeforeEndOfTurn() {
+           Debug.Log("Restored cost of card: " + Name);
             foreach (var cost in _initCosts) {
                 cost.Key.Value.Value += cost.Value;
             }

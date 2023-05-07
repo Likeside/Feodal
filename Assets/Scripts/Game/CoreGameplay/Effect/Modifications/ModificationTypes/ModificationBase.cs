@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Game.CoreGameplay.Injections;
 using UniRx;
+using UnityEngine;
 
 namespace Game.CoreGameplay.Effect {
     public class ModificationBase: GRES_SolverInjection, IModification {
@@ -25,11 +26,16 @@ namespace Game.CoreGameplay.Effect {
         }
 
         public virtual void Modify() {
+            Report();
             _number.Value.Value += _modificationValue;
         }
         
         protected void RecalculateModification() {
             _modificationValue = CalculateFormula(_modificationFormula);
+        }
+
+        protected void Report() {
+            Debug.Log("Modified: " + Name);
         }
 
 

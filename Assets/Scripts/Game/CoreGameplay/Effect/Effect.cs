@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UniRx;
+using UnityEngine;
 
 namespace Game.CoreGameplay.Effect {
     public class Effect: DisposableInjection {
@@ -34,6 +35,7 @@ namespace Game.CoreGameplay.Effect {
         }
         
         public void ApplyAtEndOfTurn() {
+            Debug.Log("Applied effect: " + Name);
             foreach (var turns in TurnsToCompleteList) {
                 if (turns.Value > 0) {
                     turns.Value--; //если изначальное количество ходов до окончания эффекта задать отрицательным, то эффект будет постоянным
