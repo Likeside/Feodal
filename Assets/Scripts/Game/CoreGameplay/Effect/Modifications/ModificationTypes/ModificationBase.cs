@@ -8,11 +8,11 @@ namespace Game.CoreGameplay.Effect {
         
         public string Name { get; }
         protected ModificationType Type { get; set; }
+        public float ModificationValue => _modificationValue;
 
        protected readonly Number _number;
        protected readonly string _modificationFormula;
        protected float _modificationValue;
-
        
         public ModificationBase(string name, Number number, string modificationFormula) {
              Name = name;
@@ -27,9 +27,7 @@ namespace Game.CoreGameplay.Effect {
         public virtual void Modify() {
             _number.Value.Value += _modificationValue;
         }
-
-
-
+        
         protected void RecalculateModification() {
             _modificationValue = CalculateFormula(_modificationFormula);
         }

@@ -8,6 +8,8 @@ namespace Game.CoreGameplay.Injections {
 
         public Sprite GetModificationBorderByName(string modificationName);
 
+        public float GetModificationValueByName(string modificationName);
+
         public Sprite GetEffectIconByName(string effectName);
 
         public Sprite EffectBorderByName(string effectName);
