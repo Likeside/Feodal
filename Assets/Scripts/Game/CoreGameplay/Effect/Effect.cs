@@ -6,7 +6,7 @@ namespace Game.CoreGameplay.Effect {
     public class Effect: DisposableInjection {
         public string Name { get; }
         public List<string> ModificationsName { get; }
-        public readonly ReactiveCollection<ReactiveProperty<int>> TurnsToCompleteList = new();
+        public ReactiveCollection<ReactiveProperty<int>> TurnsToCompleteList = new();
         readonly List<IModification> _modifications;
         int _initTurns;
         ReactiveProperty<int> _currentTurnsToRemove;
@@ -25,6 +25,13 @@ namespace Game.CoreGameplay.Effect {
             _previousCountValue = (int)_effectCount.Value.Value;
             _effectCount.Value.Subscribe(AddOrRemoveEffect).AddTo(_disposable);
         }
+
+        public void Load(ReactiveCollection<ReactiveProperty<int>> turnsToCompleteList) {
+            TurnsToCompleteList = turnsToCompleteList;
+            foreach (var turnsProperty in turnsToCompleteList) {
+               SubscribeModificationToTurns(turnsProperty);
+            }
+        }
         
         public void ApplyAtEndOfTurn() {
             foreach (var turns in TurnsToCompleteList) {
@@ -39,7 +46,12 @@ namespace Game.CoreGameplay.Effect {
         void Add() {
             var turns = _initTurns + (int)_turnModificatorNumber.Value.Value;
             var turnsProperty = new ReactiveProperty<int>(turns);
-            
+            SubscribeModificationToTurns(turnsProperty);
+           //добавляем количество ходов до окончания эффекта в список количества ходов/количества эффектов
+            TurnsToCompleteList.Add(turnsProperty);
+        }
+
+        void SubscribeModificationToTurns(ReactiveProperty<int> turnsProperty) {
             //на каждое изменение количества ходов вызываем модификацию
             turnsProperty.Subscribe(
                 _ => {
@@ -55,9 +67,6 @@ namespace Game.CoreGameplay.Effect {
                     _currentTurnsToRemove = turnsProperty; //выставляем конкретное проперти ходов, чтобы именно оно отремувилось
                     _effectCount.Value.Value--;
                 }).AddTo(_disposable);
-            
-            //добавляем количество ходов до окончания эффекта в список количества ходов/количества эффектов
-            TurnsToCompleteList.Add(turnsProperty);
         }
 
         void RemoveFirst() {
