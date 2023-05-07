@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Game;
 using Game.CoreGameplay.Effect;
 using Game.CoreGameplay.Injections;
 using Template.AdsAndAnalytics;
@@ -12,6 +13,7 @@ using Zenject;
 public class GameController : LocalSingleton<GameController> {
         
         [SerializeField] ButtonManager _buttonManager;
+        [SerializeField] JSONDataPathsContainer _dataPathsContainer;
 
         protected IDataHolder _holder;
         
@@ -27,6 +29,11 @@ public class GameController : LocalSingleton<GameController> {
                 if (_buttonManager.TipButtonActive) _buttonManager.OnTipButtonPressed += TipButtonPressed;
                 if (_buttonManager.PauseButtonActive) _buttonManager.OnTipButtonPressed += PauseButtonPressed;
                 if (PanelManager.Instance.ElementsActiveness.rateUsPanelActive) ExternalLinksManager.Instance.OnRateUsLinkOpened += RateUsLinkOpened;
+
+                Creator creator = new Creator();
+                creator.LoadDatas(_dataPathsContainer);
+                creator.Create();
+                
                 _cardsInSlot = new List<Card>();
         }
 

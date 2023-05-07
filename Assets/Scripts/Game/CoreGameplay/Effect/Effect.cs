@@ -46,6 +46,7 @@ namespace Game.CoreGameplay.Effect {
         //вызывать этот метод при активации эффекта (карта, событие или модификация может вызвать активацию)
         //UPD: метод будет вызываться при смене value в effectCount, если он увеличен
         void Add() {
+            Debug.Log("Added effect: " + Name);
             var turns = _initTurns + (int)_turnModificatorNumber.Value.Value;
             var turnsProperty = new ReactiveProperty<int>(turns);
             SubscribeModificationToTurns(turnsProperty);
@@ -91,6 +92,7 @@ namespace Game.CoreGameplay.Effect {
                 }
             }
             else {
+                Debug.Log("Removed effect: " + Name);
                 int times = _previousCountValue - (int)count;
 
                 for (int i = 0; i < times; i++) {
