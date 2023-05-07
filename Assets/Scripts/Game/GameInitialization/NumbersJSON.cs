@@ -9,6 +9,7 @@ namespace Game {
         public List<NumberJSONData> NumberJsonDatas;
         public override void Load(string path) {
             var jsonText = Resources.Load<TextAsset>(path);
+            if(jsonText == null) Debug.Log("NumbersJSON null");
             NumberJsonDatas = JsonConvert.DeserializeObject<NumbersJSON>(jsonText.text)?.NumberJsonDatas; 
         }
     }

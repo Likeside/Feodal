@@ -31,8 +31,11 @@ public class GameController : LocalSingleton<GameController> {
                 if (_buttonManager.PauseButtonActive) _buttonManager.OnTipButtonPressed += PauseButtonPressed;
                 if (PanelManager.Instance.ElementsActiveness.rateUsPanelActive) ExternalLinksManager.Instance.OnRateUsLinkOpened += RateUsLinkOpened;
 
+                Debug.Log("Init creator");
                 Creator creator = new Creator();
+                Debug.Log("Loading datas");
                 creator.LoadDatas(_dataPathsContainer);
+                Debug.Log("Creating");
                 creator.Create();
                 
                 _cardsInSlot = new List<Card>();

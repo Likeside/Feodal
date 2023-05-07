@@ -25,13 +25,18 @@ namespace Game {
             _modificationsJson = new ModificationsJSON();
             _effectsJson = new EffectsJSON();
             _cardsJson = new CardsJSON();
-            _effectsJson = new EffectsJSON();
+            _eventsJson = new EventsJSON();
             //TODO: заменить на дженерик, грузить при инициализации класса
             
+            Debug.Log("Loading numbers");
             _numbersJson.Load(dataPathsContainer.numbersPath);
+            Debug.Log("Loading mods");
             _modificationsJson.Load(dataPathsContainer.modificationsPath);
+            Debug.Log("Loading effects");
             _effectsJson.Load(dataPathsContainer.effectsPath);
+            Debug.Log("Loading cards");
             _cardsJson.Load(dataPathsContainer.cardsPath);
+            Debug.Log("Loading events");
             _eventsJson.Load(dataPathsContainer.randomEventsPath);
         }
 

@@ -35351,8 +35351,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _buttonManager: {fileID: 1790247834}
-  _dataPathsContainer: {fileID: 0}
-  _display: {fileID: 0}
+  _dataPathsContainer: {fileID: 11400000, guid: 9fef4e6f8030535918bfa6b60e773cb6, type: 2}
+  _display: {fileID: 942504750}
 --- !u!4 &1777971618
 Transform:
   m_ObjectHideFlags: 0

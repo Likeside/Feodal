@@ -19,7 +19,7 @@ namespace Game.CoreGameplay.Injections {
         protected List<Number> _formulaDependencies;
         
         [Inject]
-        public void SetDisposable(GRES_Solver solver) {
+        public void SetSolver(GRES_Solver solver) {
             _solver = solver;
         }
         [Inject]

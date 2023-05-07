@@ -5,7 +5,7 @@
       "name": "BasicDummy",
       "numberToModifyName": "DummyToModify",
       "modificationFormula": "0+1",
-      "turnsToComplete": "",
+      "turnsToComplete": "0",
       "successChanceFormula": "",
       "imageAssetLink": "",
       "borderAssetLink": ""
@@ -35,10 +35,10 @@
       "name": "StaticDummy",
       "numberToModifyName": "DummyToModify",
       "modificationFormula": "<BasicDummy>+<CardAvailabilityDummy>",
-      "turnsToComplete": "",
+      "turnsToComplete": "0",
       "successChanceFormula": "",
       "imageAssetLink": "",
       "borderAssetLink": ""
-    },
+    }
   ]
 }

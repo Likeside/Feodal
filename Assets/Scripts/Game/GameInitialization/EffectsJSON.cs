@@ -9,6 +9,7 @@ namespace Game {
         public List<EffectJSONData> EffectJsonDatas;
         public override void Load(string path) {
             var jsonText = Resources.Load<TextAsset>(path);
+            if(jsonText == null) Debug.Log("EffectsJSON null");
             EffectJsonDatas = JsonConvert.DeserializeObject<EffectsJSON>(jsonText.text)?.EffectJsonDatas;
         }
     }

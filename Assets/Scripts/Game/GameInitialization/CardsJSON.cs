@@ -11,6 +11,7 @@ namespace Game {
 
         public override void Load(string path) {
             var jsonText = Resources.Load<TextAsset>(path);
+            if(jsonText == null) Debug.Log("CardsJSON null");
             CardJsonDatas = JsonConvert.DeserializeObject<CardsJSON>(jsonText.text)?.CardJsonDatas;
         }
     }

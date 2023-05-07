@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fe865aacaa34560906b5c28b17802e6, type: 3}
   m_Name: JSONDataPathsContainer
   m_EditorClassIdentifier: 
-  numbersPath: 
-  modificationsPath: 
-  effectsPath: 
-  cardsPath: 
-  randomEventsPath: 
+  numbersPath: JSONDatas/NumbersJSON
+  modificationsPath: JSONDatas/ModificationsJSON
+  effectsPath: JSONDatas/EffectsJSON
+  cardsPath: JSONDatas/CardsJSON
+  randomEventsPath: JSONDatas/RandomEventsJSON

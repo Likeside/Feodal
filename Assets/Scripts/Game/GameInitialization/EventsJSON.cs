@@ -9,6 +9,7 @@ namespace Game {
         public List<EventsJSONData> EventsJsonDatas;
         public override void Load(string path) {
             var jsonText = Resources.Load<TextAsset>(path);
+            if(jsonText == null) Debug.Log("EventsJSON null");
             EventsJsonDatas = JsonConvert.DeserializeObject<EventsJSON>(jsonText.text)?.EventsJsonDatas;
         }
     }
