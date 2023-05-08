@@ -6,6 +6,7 @@ using Game.CoreGameplay.Effect;
 using Game.CoreGameplay.Injections;
 using Template.AdsAndAnalytics;
 using Template.UI;
+using UniRx;
 using UnityEngine;
 using Utilities;
 using Zenject;
@@ -18,11 +19,17 @@ public class GameController : LocalSingleton<GameController> {
         
        
         IDataHolder _holder;
+        GRES_Solver _solver;
+        CompositeDisposable _disposable;
 
         List<Card> _cardsInSlot;
 
-        void Awake() {
-                GameInstallerS.Install(new DiContainer());
+
+        [Inject]
+        public void InjectDependencies(CompositeDisposable disposable, GRES_Solver solver, IDataHolder holder) {
+                _disposable = disposable;
+                _solver = solver;
+                _holder = holder;
         }
 
         void Start() { 
@@ -36,7 +43,7 @@ public class GameController : LocalSingleton<GameController> {
                 Debug.Log("Loading datas");
                 creator.LoadDatas(_dataPathsContainer);
                 Debug.Log("Creating");
-                creator.Create();
+                creator.Create(_disposable, _solver, _holder);
                 
                 _cardsInSlot = new List<Card>();
         }

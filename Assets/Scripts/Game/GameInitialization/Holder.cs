@@ -57,6 +57,7 @@ namespace Game {
         }
 
         public Number GetNumber(string numberName) {
+            if(_numbers == null) Debug.Log("Numbers list null");
             var number = _numbers.FirstOrDefault(n => n.Name.Equals(numberName));
             if (number != null) {
                 return number;

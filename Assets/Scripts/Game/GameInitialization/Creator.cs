@@ -2,10 +2,11 @@ using System;
 using System.Collections.Generic;
 using Game.CoreGameplay.Effect;
 using Game.CoreGameplay.Injections;
+using UniRx;
 using UnityEngine;
 
 namespace Game {
-    public class Creator: DataHolderInjection {
+    public class Creator {
         NumbersJSON _numbersJson;
         ModificationsJSON _modificationsJson;
         EffectsJSON _effectsJson;
@@ -18,7 +19,11 @@ namespace Game {
         List<Effect> _effects;
         List<Card> _cards;
         List<RandomEvent> _events;
-        
+
+
+        CompositeDisposable _disposable;
+        IDataHolder _holder;
+        GRES_Solver _solver;
         
         public void LoadDatas(JSONDataPathsContainer dataPathsContainer) {
 
@@ -41,7 +46,11 @@ namespace Game {
             _eventsJson.Load(dataPathsContainer.randomEventsPath);
         }
 
-       public void Create() {
+       public void Create(CompositeDisposable disposable, GRES_Solver solver, IDataHolder holder) {
+           _disposable = disposable;
+           _solver = solver;
+           _holder = holder;
+           
            _numbers = new List<Number>();
            _modifications = new List<ModificationBase>();
            _effects = new List<Effect>();
@@ -62,7 +71,7 @@ namespace Game {
        
        void CreateNumbers() {
            foreach (var data in _numbersJson.NumberJsonDatas) {
-               _numbers.Add(new Number(data.name, data.initValue, data.minValue, data.maxValue, data.formula));
+               _numbers.Add(new Number(_disposable, _solver, _holder,data.name, data.initValue, data.minValue, data.maxValue, data.formula));
            }
        }
 
@@ -71,24 +80,24 @@ namespace Game {
                ModificationBase modification;
                switch (data.type) {
                    case "basic":
-                       modification = new ModificationBase(data.name, _holder.GetNumber(data.numberToModifyName),
+                       modification = new ModificationBase(_disposable, _solver, _holder, data.name, _holder.GetNumber(data.numberToModifyName),
                            data.modificationFormula);
                        break;
                    case "pending":
-                       modification = new ModificationPending(data.name, _holder.GetNumber(data.numberToModifyName),
+                       modification = new ModificationPending(_disposable, _solver, _holder,data.name, _holder.GetNumber(data.numberToModifyName),
                            data.modificationFormula, data.turnsToComplete);
                        break;
                    case "mission":
-                       modification = new ModificationMission(data.name, _holder.GetNumber(data.numberToModifyName),
+                       modification = new ModificationMission(_disposable, _solver, _holder,data.name, _holder.GetNumber(data.numberToModifyName),
                            data.modificationFormula, data.turnsToComplete, data.successChanceFormula);
                        break;
                    case "static":
-                       modification = new ModificationStatic(data.name, _holder.GetNumber(data.numberToModifyName),
+                       modification = new ModificationStatic(_disposable, _solver, _holder,data.name, _holder.GetNumber(data.numberToModifyName),
                            data.modificationFormula);
                        break;
                    default:
                        Debug.LogError("Loaded modification with incorrect data!");
-                       modification = new ModificationBase("INCORRECT", _holder.GetNumber("INCORRECT"), "-1");
+                       modification = new ModificationBase(_disposable, _solver, _holder,"INCORRECT", _holder.GetNumber("INCORRECT"), "-1");
                        break;
                }
                _modifications.Add(modification);
@@ -102,7 +111,7 @@ namespace Game {
                foreach (var modificationName in data.modificationsName) {
                    listOfModifications.Add( _holder.GetModificationByName(modificationName));
                }
-               _effects.Add(new Effect(_holder.GetNumber(data.countNumberName), listOfModifications, data.countNumberName,
+               _effects.Add(new Effect( _disposable, _holder.GetNumber(data.countNumberName), listOfModifications, data.countNumberName,
                    data.initTurns, _holder.GetNumber(data.turnModificationNumberName)));
            }
        }
@@ -113,7 +122,7 @@ namespace Game {
                foreach (var initCost in data.initCosts) {
                    initCosts.Add(_holder.GetNumber(initCost.Key), initCost.Value);
                }
-               _cards.Add(new Card(_holder.GetNumber(data.effectCountNumberName), initCosts, 
+               _cards.Add(new Card(_disposable, _solver, _holder,_holder.GetNumber(data.effectCountNumberName), initCosts, 
                    new Tuple<Number, float>(_holder.GetNumber(data.availabilityNumberName), data.availabilityParameter)));
            }
        }

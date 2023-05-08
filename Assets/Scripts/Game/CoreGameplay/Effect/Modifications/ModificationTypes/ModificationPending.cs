@@ -1,3 +1,4 @@
+using Game.CoreGameplay.Injections;
 using UniRx;
 
 namespace Game.CoreGameplay.Effect {
@@ -5,7 +6,8 @@ namespace Game.CoreGameplay.Effect {
 
         protected int _turnsToComplete;
         
-        public ModificationPending(string name, Number number, string modificationFormula, int turnsToComplete) : base(name, number, modificationFormula) {
+        public ModificationPending(CompositeDisposable disposable, GRES_Solver solver, IDataHolder holder, string name, Number number, string modificationFormula, int turnsToComplete) :
+            base(disposable, solver, holder, name, number, modificationFormula) {
             _turnsToComplete = turnsToComplete;
             Type = ModificationType.Pending;
         }

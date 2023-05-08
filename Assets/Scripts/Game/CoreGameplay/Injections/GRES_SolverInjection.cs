@@ -10,10 +10,8 @@ using Zenject;
 namespace Game.CoreGameplay.Injections {
     public class GRES_SolverInjection: DisposableInjection {
 
-        [Inject]
         protected GRES_Solver _solver;
         
-        [Inject]
         protected IDataHolder _numbersValueHolder;
 
         protected List<string> _passedVariables;
@@ -23,17 +21,13 @@ namespace Game.CoreGameplay.Injections {
         protected List<Number> _formulaDependencies;
         
         
-        /*
-        [Inject]
-        public void SetSolver(GRES_Solver solver) {
+        
+        public GRES_SolverInjection(CompositeDisposable disposable, GRES_Solver solver, IDataHolder holder) : base(disposable) {
             _solver = solver;
+            _numbersValueHolder = holder;
         }
-        [Inject]
-        public void SetNumbersValueHolder(IDataHolder numbersValueHolder) {
-            _numbersValueHolder = numbersValueHolder;
-        }
-        */
-
+        
+        
         protected List<string> GetVariablesFromString(string formula) {
             _passedVariables ??= new List<string>();
             _passedVariables.Clear();
@@ -88,6 +82,6 @@ namespace Game.CoreGameplay.Injections {
                 }).AddTo(_disposable);
             } 
         }
-        
+
     }
 }

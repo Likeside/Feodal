@@ -1,6 +1,10 @@
+using Game.CoreGameplay.Injections;
+using UniRx;
+
 namespace Game.CoreGameplay.Effect {
     public class ModificationStatic: ModificationBase {
-        public ModificationStatic(string name, Number number, string modificationFormula) : base(name, number, modificationFormula) {
+        public ModificationStatic(CompositeDisposable disposable, GRES_Solver solver, IDataHolder holder, string name, Number number, string modificationFormula) 
+            : base(disposable, solver, holder, name, number, modificationFormula) {
             Type = ModificationType.Static;
         }
 

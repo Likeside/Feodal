@@ -15,7 +15,8 @@ namespace Game.CoreGameplay.Effect {
        protected readonly string _modificationFormula;
        protected float _modificationValue;
        
-        public ModificationBase(string name, Number number, string modificationFormula) {
+        public ModificationBase(CompositeDisposable disposable, GRES_Solver solver, IDataHolder holder, string name, Number number, string modificationFormula) 
+            : base(disposable, solver, holder) {
              Name = name;
             _number = number;
             _modificationFormula = modificationFormula;

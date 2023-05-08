@@ -20,7 +20,8 @@ namespace Game.CoreGameplay.Effect {
         string _formula;
         
 
-        public Number(string name, float initValue, float minValue = float.MinValue, float maxValue = float.MaxValue, string formula = "") {
+        public Number(CompositeDisposable disposable, GRES_Solver solver, IDataHolder holder, string name, float initValue, float minValue = float.MinValue, float maxValue = float.MaxValue, string formula = "")
+            : base(disposable, solver, holder) {
             Name = name;
             _minValue = minValue;
             _maxValue = maxValue;
@@ -35,6 +36,7 @@ namespace Game.CoreGameplay.Effect {
             Value.Value = _initValue;
             */
             _formula = formula;
+            Initialize();
             /*
             if (formula != String.Empty) {
                 _formula = formula;

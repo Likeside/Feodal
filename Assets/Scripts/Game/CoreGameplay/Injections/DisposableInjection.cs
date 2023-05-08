@@ -5,9 +5,12 @@ using Zenject;
 namespace Game.CoreGameplay {
     public class DisposableInjection {
 
-        [Inject]
         protected CompositeDisposable _disposable;
-        
+
+
+        public DisposableInjection(CompositeDisposable disposable) {
+            _disposable = disposable;
+        }
         
         /*
         [Inject] 

@@ -4,11 +4,12 @@ using Zenject;
 namespace Game.CoreGameplay.Injections {
     public class DataHolderInjection {
         
-        [Inject]
         protected IDataHolder _holder;
-        
-        
-        
+
+
+        public DataHolderInjection(IDataHolder holder) {
+            _holder = holder;
+        }
         /*
         [Inject]
         public void SetDataHolder(IDataHolder holder) {

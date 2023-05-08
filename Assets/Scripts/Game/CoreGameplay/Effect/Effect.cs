@@ -15,7 +15,7 @@ namespace Game.CoreGameplay.Effect {
         Number _effectCount;
         int _previousCountValue;
         
-        public Effect(Number effectCount, List<IModification> modifications, string name, int initTurns, Number turnModificatorNumber) {
+        public Effect(CompositeDisposable disposable, Number effectCount, List<IModification> modifications, string name, int initTurns, Number turnModificatorNumber): base(disposable) {
             _modifications = modifications;
             Name = name;
             _initTurns = initTurns;

@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Game.CoreGameplay.Injections;
+using UniRx;
 using UnityEngine;
 
 namespace Game.CoreGameplay.Effect {
@@ -9,7 +11,7 @@ namespace Game.CoreGameplay.Effect {
 
         List<Number> _successChanceFormulaDependencies;
 
-        public ModificationMission(string name, Number number, string modificationFormula, int turnsToComplete, string successChanceFormula) : base(name, number, modificationFormula, turnsToComplete) {
+        public ModificationMission(CompositeDisposable disposable, GRES_Solver solver, IDataHolder holder, string name, Number number, string modificationFormula, int turnsToComplete, string successChanceFormula) : base(disposable, solver, holder, name, number, modificationFormula, turnsToComplete) {
             _successChanceFormula = successChanceFormula;
             _successChanceValue = CalculateFormula(successChanceFormula);
             _successChanceFormulaDependencies = GetNumberDependencies(successChanceFormula);

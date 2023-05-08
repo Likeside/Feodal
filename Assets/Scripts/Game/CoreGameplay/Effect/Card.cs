@@ -16,7 +16,7 @@ namespace Game.CoreGameplay.Effect {
         bool _formulaBasedAvailability;
         int _availableCount;
 
-        public Card(Number effectCount, Dictionary<Number, float> initCosts, Tuple<Number, float> availability) : base() {
+        public Card(CompositeDisposable disposable, GRES_Solver solver, IDataHolder holder, Number effectCount, Dictionary<Number, float> initCosts, Tuple<Number, float> availability) : base(disposable, solver, holder) {
             _effectCount = effectCount;
             _initCosts = initCosts;
             _availability = availability;
