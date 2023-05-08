@@ -14,14 +14,15 @@ namespace Game.CoreGameplay.Effect {
         Number _turnModificatorNumber;
         Number _effectCount;
         int _previousCountValue;
-        
+        List<ReactiveProperty<int>> _turnsToDecrease;
+
         public Effect(CompositeDisposable disposable, Number effectCount, List<IModification> modifications, string name, int initTurns, Number turnModificatorNumber): base(disposable) {
+            _turnsToDecrease = new List<ReactiveProperty<int>>();
             _modifications = modifications;
             Name = name;
             _initTurns = initTurns;
             _turnModificatorNumber = turnModificatorNumber;
             ModificationsName = _modifications.Select(m => m.Name).ToList();
-            
             _effectCount = effectCount;
             _previousCountValue = (int)_effectCount.Value.Value;
             _effectCount.Value.Subscribe(AddOrRemoveEffect).AddTo(_disposable);
@@ -36,11 +37,23 @@ namespace Game.CoreGameplay.Effect {
         
         public void ApplyAtEndOfTurn() {
             Debug.Log("Applied effect: " + Name);
+            _turnsToDecrease.Clear();
+            for (int i = 0; i < TurnsToCompleteList.Count; i++) {
+                if (TurnsToCompleteList[i].Value > 0) {
+                    _turnsToDecrease.Add(TurnsToCompleteList[i]);
+                }
+            }
+
+            foreach (var turnToDecrease in _turnsToDecrease) {
+                turnToDecrease.Value--;
+            }
+            /*
             foreach (var turns in TurnsToCompleteList) {
                 if (turns.Value > 0) {
                     turns.Value--; //если изначальное количество ходов до окончания эффекта задать отрицательным, то эффект будет постоянным
                 }
             }
+            */
         }
         
         //вызывать этот метод при активации эффекта (карта, событие или модификация может вызвать активацию)
@@ -50,7 +63,9 @@ namespace Game.CoreGameplay.Effect {
             var turns = _initTurns + (int)_turnModificatorNumber.Value.Value;
             var turnsProperty = new ReactiveProperty<int>(turns);
             SubscribeModificationToTurns(turnsProperty);
-           //добавляем количество ходов до окончания эффекта в список количества ходов/количества эффектов
+            turnsProperty.Value--;
+            turnsProperty.Value++;
+            //добавляем количество ходов до окончания эффекта в список количества ходов/количества эффектов
             TurnsToCompleteList.Add(turnsProperty);
         }
 
@@ -59,7 +74,7 @@ namespace Game.CoreGameplay.Effect {
             turnsProperty.Subscribe(
                 _ => {
                     foreach (var modification in _modifications) {
-                        modification.Modify();
+                        modification.Modify(turnsProperty.Value);
                     }
                 }
             ).AddTo(_disposable);

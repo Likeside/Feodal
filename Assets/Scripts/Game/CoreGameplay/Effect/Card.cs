@@ -20,7 +20,7 @@ namespace Game.CoreGameplay.Effect {
             _effectCount = effectCount;
             _initCosts = initCosts;
             _availability = availability;
-
+            Name = effectCount.Name;
             foreach (var cost in initCosts) {
                 cost.Key.Value.Subscribe(_ => {
                     RecalculateAvailability();

@@ -12,12 +12,16 @@ namespace Game.CoreGameplay.Effect {
             Type = ModificationType.Pending;
         }
 
-        public override void Modify() {
+        public override void Modify(int turns) {
+            /*
             if (_turnsToComplete > 0) {
                 _turnsToComplete--;
                 return;
             }
-            base.Modify();
+            */
+            if(_turnsToComplete - turns != _turnsToComplete) return;
+
+            base.Modify(turns);
         }
     }
 }

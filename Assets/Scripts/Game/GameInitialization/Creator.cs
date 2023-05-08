@@ -67,6 +67,15 @@ namespace Game {
            _holder.PassCards(_cards, _cardsJson.CardJsonDatas);
            CreateEvents();
            _holder.PassEvent(_events, _eventsJson.EventsJsonDatas);
+
+
+           foreach (var number in _numbers) {
+               number.Initialize();
+           }
+
+           foreach (var mod in _modifications) {
+               mod.Initialize();
+           }
        }
        
        void CreateNumbers() {

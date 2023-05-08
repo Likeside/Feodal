@@ -36,7 +36,7 @@ namespace Game.CoreGameplay.Effect {
             Value.Value = _initValue;
             */
             _formula = formula;
-            Initialize();
+         //   Initialize();
             /*
             if (formula != String.Empty) {
                 _formula = formula;

@@ -20,13 +20,10 @@ namespace Game.CoreGameplay.Effect {
              Name = name;
             _number = number;
             _modificationFormula = modificationFormula;
-            _modificationValue = CalculateFormula(modificationFormula);
-            _formulaDependencies = GetNumberDependencies(modificationFormula);
-            SubscribeToDependency(_formulaDependencies, RecalculateModification);
             Type = ModificationType.Basic;
         }
 
-        public virtual void Modify() {
+        public virtual void Modify(int turns) {
             Report();
             _number.Value.Value += _modificationValue;
         }
@@ -37,6 +34,12 @@ namespace Game.CoreGameplay.Effect {
 
         protected void Report() {
             Debug.Log("Modified: " + Name);
+        }
+
+        public virtual void Initialize() {
+            _modificationValue = CalculateFormula(_modificationFormula);
+            _formulaDependencies = GetNumberDependencies(_modificationFormula);
+            SubscribeToDependency(_formulaDependencies, RecalculateModification);
         }
 
 

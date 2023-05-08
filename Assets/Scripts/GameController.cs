@@ -61,8 +61,10 @@ public class GameController : LocalSingleton<GameController> {
         }
 
         public void CardPassedToSlot(string cardName) {
+                if(_holder == null) Debug.Log("holder null in gc");
+                if(_holder.Cards == null) Debug.Log("holder does not contain cards");
                 var card = _holder.Cards.FirstOrDefault(c => c.Name.Equals(cardName));
-             _cardsInSlot.Add(card); 
+                _cardsInSlot.Add(card); 
              card.PayCost();
         }
 

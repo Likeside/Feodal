@@ -58,7 +58,7 @@
     },
     {
       "name": "BasicProbabilityNumber",
-      "initValue": 50,
+      "initValue": 0,
       "minValue": -999999,
       "maxValue": 9999999,
       "formula": ""

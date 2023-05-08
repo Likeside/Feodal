@@ -17,7 +17,7 @@ namespace Game.CoreGameplay.Effect {
         }
 
         public void TryToApplyEvent() {
-            if (Random.Range(0, 100) > _probability.Value.Value) {
+            if (Random.Range(0, 100) < _probability.Value.Value) {
                 _effectCount.Value.Value++;
                 Debug.Log("Applied event: " + Name);
             }

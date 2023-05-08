@@ -1,5 +1,6 @@
 using Game.CoreGameplay.Injections;
 using UniRx;
+using UnityEngine;
 
 namespace Game.CoreGameplay.Effect {
     public class ModificationStatic: ModificationBase {
@@ -8,9 +9,11 @@ namespace Game.CoreGameplay.Effect {
             Type = ModificationType.Static;
         }
 
-        public override void Modify() {
+        public override void Modify(int turns) {
             Report();
+            RecalculateModification();
             //TODO: придумать, как не прибавлять одно и тоже на каждом ходу и как перестать учитывать при снятии эффекта
+            Debug.Log("Static dummy mod value: " + _modificationValue);
             _number.Value.Value = _modificationValue; //UPD: в формуле задавать зависимости. Т.е. типа "1*количествоЭффектовСолдат + 2*количествоЭффектовВсадник"
         }
     }
