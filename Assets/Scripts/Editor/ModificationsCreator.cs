@@ -9,33 +9,29 @@ using UnityEngine;
 
 namespace Editor {
     public class ModificationsCreator: EntityCreator<ModificationsCreator, ModificationsJSON> {
-
-        TextAsset _numbersTextAsset;
-        List<NumberJSONData> _numberJsonDatas;
+        
+       public static List<string> s_numbersNames;
 
         public ModificationType type;
         [TextArea(1, 10)]
         public string Name = "";
-        [TextArea(1, 10)]
-        public string NumberToModifyName = "";  
-        [TextArea(1, 10)]
+        [ValueDropdown(nameof(s_numbersNames))]
+        public string NumberToModifyName = s_numbersNames[0];  
+        [TextArea(1, 50)]
         public string ModificationFormula = "";
         [TextArea(1, 10)] 
         public string TurnsToComplete = "-1";
-        [TextArea(1, 10)] 
+        [TextArea(1, 50)] 
         public string SuccessChanceFormula = "";  
-        [TextArea(1, 10)] 
+        [TextArea(1, 50)] 
         public string ImageAssetLink = "";  
-        [TextArea(1, 10)] 
+        [TextArea(1, 50)] 
         public string BorderAssetLink = "";
-        
-        
+
         
         
         protected override void CreateDataAndLoadTextAsset() {
             LoadTextAsset(s_container.modificationsPath);
-            _numbersTextAsset = Resources.Load<TextAsset>(s_container.numbersPath);
-            _numberJsonDatas = JsonConvert.DeserializeObject<NumbersJSON>(_numbersTextAsset.text).jsonDatas;
             _json ??= new ModificationsJSON();
             _json.Load(s_container.modificationsPath);
         }
@@ -70,9 +66,13 @@ namespace Editor {
                 Debug.LogError("TurnsToComplete incorrect: " + TurnsToComplete);
                 return false;
             }
-
-            if (_numberJsonDatas.All(_ => _.name != ((ModificationJSONData) data).numberToModifyName)) {
+            if (s_numbersNames.All(_ => _ != ((ModificationJSONData) data).numberToModifyName)) {
                 Debug.LogError("No number with such name");
+                return false;
+            }
+            if (type == ModificationType.Mission &&
+                ((ModificationJSONData) data).successChanceFormula == String.Empty) {
+                Debug.LogError("Type of mod is mission, but no success chance formula entered");
                 return false;
             }
             return true;

@@ -16,7 +16,7 @@ namespace Editor {
         public string MinValue = ""; 
         [TextArea(1, 10)]
         public string MaxValue = ""; 
-        [TextArea(1, 10)]
+        [TextArea(1, 50)]
         public string Formula = "";
         
         
