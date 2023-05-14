@@ -1,14 +1,16 @@
+using Game;
 using Sirenix.OdinInspector;
-using Sirenix.OdinInspector.Editor;
 using UnityEngine;
 
 namespace Editor {
     public class OdinWindowManager: MonoBehaviour {
-        
 
+        [SerializeField] JSONDataPathsContainer _container;
+        
         [Button]
         public void CreateNumber() {
-            EntityCreator.OpenWindow();
+            NumbersCreator.s_container = _container;
+            NumbersCreator.OpenWindow();
         }
 
 

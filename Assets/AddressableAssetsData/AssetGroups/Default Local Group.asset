@@ -16,7 +16,11 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: a56bfd3aebb6aa366ab8d853f1a18250
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 9fef4e6f8030535918bfa6b60e773cb6
+    m_Address: Assets/Configs/JSONDataPathsContainer.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 50f5383d1ef897a6aa0e7f6583447a5f, type: 2}
   m_SchemaSet:

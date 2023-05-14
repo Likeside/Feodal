@@ -4,72 +4,92 @@
       "name": "BasicDummy",
       "initValue": 0.0,
       "minValue": 0.0,
-      "maxValue": 100,
+      "maxValue": 100.0,
       "formula": ""
-    },  
+    },
     {
       "name": "StaticDummy",
       "initValue": 0.0,
       "minValue": 0.0,
-      "maxValue": 100,
+      "maxValue": 100.0,
       "formula": ""
-    }, 
+    },
     {
       "name": "MissionDummy",
       "initValue": 0.0,
       "minValue": 0.0,
-      "maxValue": 100,
+      "maxValue": 100.0,
       "formula": ""
-    },   
+    },
     {
       "name": "PendingDummy",
       "initValue": 0.0,
       "minValue": 0.0,
-      "maxValue": 100,
+      "maxValue": 100.0,
       "formula": ""
-    },   
+    },
     {
       "name": "FormulaDummy",
       "initValue": 0.0,
-      "minValue": -999999,
-      "maxValue": 9999999,
+      "minValue": -999999.0,
+      "maxValue": 9999999.0,
       "formula": "<BasicDummy>+<StaticDummy>"
     },
     {
       "name": "CardAvailabilityDummy",
-      "initValue": 1,
-      "minValue": -999999,
-      "maxValue": 9999999,
+      "initValue": 1.0,
+      "minValue": -999999.0,
+      "maxValue": 9999999.0,
       "formula": ""
     },
     {
       "name": "DummyToModify",
-      "initValue": 0,
-      "minValue": -999999,
-      "maxValue": 9999999,
+      "initValue": 0.0,
+      "minValue": -999999.0,
+      "maxValue": 9999999.0,
       "formula": ""
     },
     {
       "name": "TurnModificatorNumber",
-      "initValue": 0,
-      "minValue": -999999,
-      "maxValue": 9999999,
+      "initValue": 0.0,
+      "minValue": -999999.0,
+      "maxValue": 9999999.0,
       "formula": ""
     },
     {
       "name": "BasicProbabilityNumber",
-      "initValue": 0,
-      "minValue": -999999,
-      "maxValue": 9999999,
+      "initValue": 0.0,
+      "minValue": -999999.0,
+      "maxValue": 9999999.0,
       "formula": ""
     },
     {
       "name": "Gold",
-      "initValue": 500,
-      "minValue": -999999,
-      "maxValue": 9999999,
+      "initValue": 500.0,
+      "minValue": -999999.0,
+      "maxValue": 9999999.0,
+      "formula": ""
+    },
+    {
+      "name": "test",
+      "initValue": 0.0,
+      "minValue": -50.0,
+      "maxValue": 100.0,
+      "formula": ""
+    },
+    {
+      "name": "test1",
+      "initValue": -100.0,
+      "minValue": -1000.0,
+      "maxValue": 555.0,
+      "formula": "<test>*2"
+    },
+    {
+      "name": "test4",
+      "initValue": 0.0,
+      "minValue": -2.0,
+      "maxValue": 3.0,
       "formula": ""
     }
-    
   ]
 }
