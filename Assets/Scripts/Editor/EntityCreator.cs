@@ -6,14 +6,14 @@ using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 
 namespace Editor {
     public class EntityCreator<T, D>: OdinEditorWindow where T: OdinEditorWindow where D: IJson{
 
         public static JSONDataPathsContainer s_container;
         protected TextAsset _textAsset;
-        protected D _jsonData;
+        protected D _json; 
+        protected IJsonData _jsonData;
 
         public static void OpenWindow() {
             GetWindow<T>().Show();
@@ -21,18 +21,23 @@ namespace Editor {
 
         [Button]
         public virtual void Create() {
-            LoadTextAsset();
+            if(!EverythingLoaded()) return;
+            CreateDataAndLoadTextAsset();
+            FillData();
+            if(!IsValid(_jsonData)) return;
+            _json.AddEntity(_jsonData);
+            SerializeData();
         }
 
         [Button]
         public virtual void RevertLastInput() {
-            _jsonData.RemoveLastEntity();
+            _json.RemoveLastEntity();
             SerializeData();
         }
 
 
         protected virtual void SerializeData() {
-            var jsonText = JsonConvert.SerializeObject(_jsonData, Formatting.Indented);
+            var jsonText = JsonConvert.SerializeObject(_json, Formatting.Indented);
             File.WriteAllText(AssetDatabase.GetAssetPath(_textAsset), jsonText);
             EditorUtility.SetDirty(_textAsset);
         }
@@ -43,9 +48,17 @@ namespace Editor {
             }
         }
 
-        protected virtual void LoadTextAsset() {
+        protected virtual void CreateDataAndLoadTextAsset() {
             
         }
+
+        protected virtual void FillData() {
+            
+        }
+
+        protected virtual bool IsValid(IJsonData data) {
+            return false;
+        } 
 
 
        protected float GetFloatValue(string input) {
