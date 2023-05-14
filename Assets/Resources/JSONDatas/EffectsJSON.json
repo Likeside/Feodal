@@ -1,5 +1,5 @@
 {
-  "EffectJsonDatas": [
+  "jsonDatas": [
     {
       "type": "Dummy",
       "countNumberName": "BasicDummy",

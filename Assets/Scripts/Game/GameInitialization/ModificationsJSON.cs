@@ -5,13 +5,7 @@ using UnityEngine;
 
 namespace Game {
     [Serializable]
-    public class ModificationsJSON: JSONData {
-        public List<ModificationJSONData> ModificationJsonDatas;
-        public override void Load(string path) {
-            var jsonText = Resources.Load<TextAsset>(path);
-            if(jsonText == null) Debug.Log("ModificationsJSON null");
-            ModificationJsonDatas = JsonConvert.DeserializeObject<ModificationsJSON>(jsonText.text)?.ModificationJsonDatas;
-        }
+    public class ModificationsJSON: JSONData<ModificationJSONData> {
     }
     
     

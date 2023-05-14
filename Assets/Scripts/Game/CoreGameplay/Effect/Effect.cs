@@ -63,8 +63,8 @@ namespace Game.CoreGameplay.Effect {
             var turns = _initTurns + (int)_turnModificatorNumber.Value.Value;
             var turnsProperty = new ReactiveProperty<int>(turns);
             SubscribeModificationToTurns(turnsProperty);
-            turnsProperty.Value--;
-            turnsProperty.Value++;
+            //turnsProperty.Value--;
+           // turnsProperty.Value++;
             //добавляем количество ходов до окончания эффекта в список количества ходов/количества эффектов
             TurnsToCompleteList.Add(turnsProperty);
         }
@@ -107,8 +107,8 @@ namespace Game.CoreGameplay.Effect {
                 }
             }
             else {
-                Debug.Log("Removed effect: " + Name);
                 int times = _previousCountValue - (int)count;
+                Debug.Log($"Removed {times} effects: " + Name);
 
                 for (int i = 0; i < times; i++) {
                     if (_currentTurnsToRemove != null) { //если конкретное проперти ходов не выставлено, просто самый первый эффект снимаем

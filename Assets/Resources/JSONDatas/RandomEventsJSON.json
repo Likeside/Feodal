@@ -1,5 +1,5 @@
 {
-  "EventsJsonDatas": [
+  "jsonDatas": [
     {
       "effectCountNumberName": "BasicDummy",
       "probabilityNumberName": "BasicProbabilityNumber"

@@ -32,7 +32,7 @@ namespace Game.CoreGameplay.Effect {
             _modificationValue = CalculateFormula(_modificationFormula);
         }
 
-        protected void Report() {
+        protected virtual void Report() {
             Debug.Log("Modified: " + Name);
         }
 

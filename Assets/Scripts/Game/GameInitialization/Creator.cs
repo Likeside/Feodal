@@ -58,15 +58,15 @@ namespace Game {
            _events = new List<RandomEvent>();
            CreateNumbers();
            if(_holder == null) Debug.Log("Holder null");
-           _holder.PassNumbers(_numbers, _numbersJson.NumberJsonDatas);
+           _holder.PassNumbers(_numbers, _numbersJson.jsonDatas);
            CreateModifications(); 
-           _holder.PassModifications(_modifications, _modificationsJson.ModificationJsonDatas);
+           _holder.PassModifications(_modifications, _modificationsJson.jsonDatas);
            CreateEffects();
-           _holder.PassEffects(_effects, _effectsJson.EffectJsonDatas);
+           _holder.PassEffects(_effects, _effectsJson.jsonDatas);
            CreateCards();
-           _holder.PassCards(_cards, _cardsJson.CardJsonDatas);
+           _holder.PassCards(_cards, _cardsJson.jsonDatas);
            CreateEvents();
-           _holder.PassEvent(_events, _eventsJson.EventsJsonDatas);
+           _holder.PassEvent(_events, _eventsJson.jsonDatas);
 
 
            foreach (var number in _numbers) {
@@ -79,13 +79,13 @@ namespace Game {
        }
        
        void CreateNumbers() {
-           foreach (var data in _numbersJson.NumberJsonDatas) {
+           foreach (var data in _numbersJson.jsonDatas) {
                _numbers.Add(new Number(_disposable, _solver, _holder,data.name, data.initValue, data.minValue, data.maxValue, data.formula));
            }
        }
 
        void CreateModifications() {
-           foreach (var data in _modificationsJson.ModificationJsonDatas) {
+           foreach (var data in _modificationsJson.jsonDatas) {
                ModificationBase modification;
                switch (data.type) {
                    case "basic":
@@ -114,7 +114,7 @@ namespace Game {
        }
 
        void CreateEffects() {
-           foreach (var data in _effectsJson.EffectJsonDatas) {
+           foreach (var data in _effectsJson.jsonDatas) {
                var listOfModifications = new List<IModification>();
 
                foreach (var modificationName in data.modificationsName) {
@@ -126,7 +126,7 @@ namespace Game {
        }
        
        void CreateCards() {
-           foreach (var data in _cardsJson.CardJsonDatas) {
+           foreach (var data in _cardsJson.jsonDatas) {
                var initCosts = new Dictionary<Number, float>();
                foreach (var initCost in data.initCosts) {
                    initCosts.Add(_holder.GetNumber(initCost.Key), initCost.Value);
@@ -137,7 +137,7 @@ namespace Game {
        }
 
        void CreateEvents() {
-           foreach (var data in _eventsJson.EventsJsonDatas) {
+           foreach (var data in _eventsJson.jsonDatas) {
                _events.Add(new RandomEvent(data.effectCountNumberName, _holder.GetNumber(data.effectCountNumberName), 
                    _holder.GetNumber(data.probabilityNumberName)));
            }

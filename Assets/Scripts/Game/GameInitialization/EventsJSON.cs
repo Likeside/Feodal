@@ -5,13 +5,8 @@ using UnityEngine;
 
 namespace Game {
     [Serializable]
-    public class EventsJSON: JSONData {
-        public List<EventsJSONData> EventsJsonDatas;
-        public override void Load(string path) {
-            var jsonText = Resources.Load<TextAsset>(path);
-            if(jsonText == null) Debug.Log("EventsJSON null");
-            EventsJsonDatas = JsonConvert.DeserializeObject<EventsJSON>(jsonText.text)?.EventsJsonDatas;
-        }
+    public class EventsJSON: JSONData<EventsJSONData> {
+
     }
 
     [Serializable]
