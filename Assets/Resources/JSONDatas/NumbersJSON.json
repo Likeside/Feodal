@@ -69,6 +69,13 @@
       "minValue": -999999.0,
       "maxValue": 9999999.0,
       "formula": ""
+    },
+    {
+      "name": "x",
+      "initValue": 0.0,
+      "minValue": 0.0,
+      "maxValue": 0.0,
+      "formula": ""
     }
   ]
 }

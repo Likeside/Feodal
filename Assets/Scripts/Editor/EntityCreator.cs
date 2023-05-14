@@ -21,8 +21,8 @@ namespace Editor {
 
         [Button]
         public virtual void Create() {
-            if(!EverythingLoaded()) return;
             CreateDataAndLoadTextAsset();
+            if(!EverythingLoaded()) return;
             FillData();
             if(!IsValid(_jsonData)) return;
             _json.AddEntity(_jsonData);
@@ -40,6 +40,8 @@ namespace Editor {
             var jsonText = JsonConvert.SerializeObject(_json, Formatting.Indented);
             File.WriteAllText(AssetDatabase.GetAssetPath(_textAsset), jsonText);
             EditorUtility.SetDirty(_textAsset);
+            AssetDatabase.SaveAssetIfDirty(_textAsset);
+            AssetDatabase.Refresh();
         }
         protected virtual void LoadTextAsset(string path) {
             if (_textAsset == null) {

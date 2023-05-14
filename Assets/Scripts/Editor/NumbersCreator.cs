@@ -41,7 +41,7 @@ namespace Editor {
                 Debug.LogError("Name empty");
                 return false;
             }
-            if (_json.jsonDatas.Any(_ => _.name == name)) {
+            if (_json.jsonDatas.Any(_ => _.name == ((NumberJSONData)data).name)) {
                 Debug.LogError("Name already exists");
                 return false;
             }

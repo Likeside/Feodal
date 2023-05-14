@@ -5,17 +5,17 @@
       "name": "BasicDummy",
       "numberToModifyName": "DummyToModify",
       "modificationFormula": "0+1",
-      "turnsToComplete": "0",
+      "turnsToComplete": 0,
       "successChanceFormula": "",
       "imageAssetLink": "",
       "borderAssetLink": ""
-    }, 
+    },
     {
       "type": "pending",
       "name": "PendingDummy",
       "numberToModifyName": "DummyToModify",
       "modificationFormula": "0+1",
-      "turnsToComplete": "3",
+      "turnsToComplete": 3,
       "successChanceFormula": "",
       "imageAssetLink": "",
       "borderAssetLink": ""
@@ -25,7 +25,7 @@
       "name": "MissionDummy",
       "numberToModifyName": "DummyToModify",
       "modificationFormula": "0+1",
-      "turnsToComplete": "5",
+      "turnsToComplete": 5,
       "successChanceFormula": "0+100",
       "imageAssetLink": "",
       "borderAssetLink": ""
@@ -35,7 +35,87 @@
       "name": "StaticDummy",
       "numberToModifyName": "DummyToModify",
       "modificationFormula": "<StaticDummy>*2",
-      "turnsToComplete": "0",
+      "turnsToComplete": 0,
+      "successChanceFormula": "",
+      "imageAssetLink": "",
+      "borderAssetLink": ""
+    },
+    {
+      "type": "Basic",
+      "name": "z",
+      "numberToModifyName": "DummyToModify",
+      "modificationFormula": "1",
+      "turnsToComplete": -1,
+      "successChanceFormula": "",
+      "imageAssetLink": "",
+      "borderAssetLink": ""
+    },
+    {
+      "type": "Basic",
+      "name": "z1",
+      "numberToModifyName": "DummyToModify",
+      "modificationFormula": "1",
+      "turnsToComplete": -1,
+      "successChanceFormula": "",
+      "imageAssetLink": "",
+      "borderAssetLink": ""
+    },
+    {
+      "type": "Basic",
+      "name": "z3",
+      "numberToModifyName": "DummyToModify",
+      "modificationFormula": "1",
+      "turnsToComplete": -1,
+      "successChanceFormula": "",
+      "imageAssetLink": "",
+      "borderAssetLink": ""
+    },
+    {
+      "type": "Basic",
+      "name": "z4",
+      "numberToModifyName": "DummyToModify",
+      "modificationFormula": "1",
+      "turnsToComplete": -1,
+      "successChanceFormula": "",
+      "imageAssetLink": "",
+      "borderAssetLink": ""
+    },
+    {
+      "type": "Basic",
+      "name": "z7",
+      "numberToModifyName": "DummyToModify",
+      "modificationFormula": "1",
+      "turnsToComplete": -1,
+      "successChanceFormula": "",
+      "imageAssetLink": "",
+      "borderAssetLink": ""
+    },
+    {
+      "type": "Basic",
+      "name": "zz9",
+      "numberToModifyName": "DummyToModify",
+      "modificationFormula": "1",
+      "turnsToComplete": -1,
+      "successChanceFormula": "",
+      "imageAssetLink": "",
+      "borderAssetLink": ""
+    },
+    {
+      "type": "Basic",
+      "name": "a1",
+      "numberToModifyName": "x",
+      "modificationFormula": "1",
+      "turnsToComplete": -1,
+      "successChanceFormula": "",
+      "imageAssetLink": "",
+      "borderAssetLink": ""
+    },
+    {
+      "type": "Basic",
+      "name": "a2",
+      "numberToModifyName": "x",
+      "modificationFormula": "1",
+      "turnsToComplete": -1,
       "successChanceFormula": "",
       "imageAssetLink": "",
       "borderAssetLink": ""
