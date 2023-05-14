@@ -1,16 +1,20 @@
+using System;
+using System.IO;
 using Game;
+using Newtonsoft.Json;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
 namespace Editor {
-    public class EntityCreator<T>: OdinEditorWindow where T: OdinEditorWindow{
+    public class EntityCreator<T, D>: OdinEditorWindow where T: OdinEditorWindow where D: IJson{
 
         public static JSONDataPathsContainer s_container;
-        protected string _lastInput;
         protected TextAsset _textAsset;
-        
+        protected D _jsonData;
+
         public static void OpenWindow() {
             GetWindow<T>().Show();
         }
@@ -22,9 +26,16 @@ namespace Editor {
 
         [Button]
         public virtual void RevertLastInput() {
-            
+            _jsonData.RemoveLastEntity();
+            SerializeData();
         }
 
+
+        protected virtual void SerializeData() {
+            var jsonText = JsonConvert.SerializeObject(_jsonData, Formatting.Indented);
+            File.WriteAllText(AssetDatabase.GetAssetPath(_textAsset), jsonText);
+            EditorUtility.SetDirty(_textAsset);
+        }
         protected virtual void LoadTextAsset(string path) {
             if (_textAsset == null) {
                 Debug.Log("Text asset not loaded, loading text asset");
@@ -39,7 +50,8 @@ namespace Editor {
 
        protected float GetFloatValue(string input) {
            if (!float.TryParse(input, out float value)) {
-                Debug.LogError("input is incorrect: " + input);
+               
+               Debug.LogError("input is incorrect: " +  (input == String.Empty? "empty" : input));
                 return float.NaN;
            }
            return value;

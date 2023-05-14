@@ -10,7 +10,7 @@ namespace Game {
     }
 
     [Serializable]
-    public class EffectJSONData {
+    public class EffectJSONData: IJsonData {
 
         public string type;
         public  string countNumberName;

@@ -9,7 +9,7 @@ namespace Game {
     }
 
     [Serializable]
-    public class NumberJSONData {
+    public class NumberJSONData: IJsonData {
        public string name;
        public float initValue;
        public float minValue;

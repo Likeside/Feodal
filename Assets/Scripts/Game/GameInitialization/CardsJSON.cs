@@ -10,7 +10,7 @@ namespace Game {
     }
 
     [Serializable]
-    public class CardJSONData {
+    public class CardJSONData: IJsonData {
         public string effectCountNumberName;
         public  Dictionary<string, float> initCosts;
         public string availabilityNumberName;

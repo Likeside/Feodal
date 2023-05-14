@@ -90,6 +90,76 @@
       "minValue": -2.0,
       "maxValue": 3.0,
       "formula": ""
+    },
+    {
+      "name": "toreplace",
+      "initValue": 0.0,
+      "minValue": -1.0,
+      "maxValue": 2.0,
+      "formula": ""
+    },
+    {
+      "name": "toreplace2",
+      "initValue": 3.0,
+      "minValue": 1.0,
+      "maxValue": 5.0,
+      "formula": ""
+    },
+    {
+      "name": "vsv",
+      "initValue": 4.0,
+      "minValue": 3.0,
+      "maxValue": 5.0,
+      "formula": ""
+    },
+    {
+      "name": "sfddg",
+      "initValue": 3.0,
+      "minValue": 2.0,
+      "maxValue": 4.0,
+      "formula": ""
+    },
+    {
+      "name": "cxbc",
+      "initValue": 5.0,
+      "minValue": 4.0,
+      "maxValue": 6.0,
+      "formula": ""
+    },
+    {
+      "name": "dfbdcnb",
+      "initValue": 4.0,
+      "minValue": 3.0,
+      "maxValue": 5.0,
+      "formula": ""
+    },
+    {
+      "name": "vnmvbm",
+      "initValue": 4.0,
+      "minValue": 3.0,
+      "maxValue": 5.0,
+      "formula": ""
+    },
+    {
+      "name": "hjjjj",
+      "initValue": 4.0,
+      "minValue": 3.0,
+      "maxValue": 5.0,
+      "formula": ""
+    },
+    {
+      "name": "ggg",
+      "initValue": 7.0,
+      "minValue": 6.0,
+      "maxValue": 8.0,
+      "formula": ""
+    },
+    {
+      "name": "aaa",
+      "initValue": 1.0,
+      "minValue": 1.0,
+      "maxValue": 1.0,
+      "formula": ""
     }
   ]
 }

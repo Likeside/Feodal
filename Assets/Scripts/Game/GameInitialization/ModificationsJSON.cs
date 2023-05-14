@@ -10,7 +10,7 @@ namespace Game {
     
     
     [Serializable]
-    public class ModificationJSONData {
+    public class ModificationJSONData: IJsonData {
 
         public string type;
         public string name;
