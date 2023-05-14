@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Game;
 using UnityEngine;
@@ -27,16 +28,16 @@ namespace Editor {
         }
 
         protected override void FillData() {
-            NumberJSONData numberJsonData = new NumberJSONData();
-            numberJsonData.name = Name;
-            numberJsonData.initValue = GetFloatValue(InitValue);
-            numberJsonData.minValue = GetFloatValue(MinValue);
-            numberJsonData.maxValue = GetFloatValue(MaxValue);
-            numberJsonData.formula = Formula;
-            _jsonData = numberJsonData;
+            _jsonData = new NumberJSONData {
+                name = Name,
+                initValue = GetFloatValue(InitValue),
+                minValue = GetFloatValue(MinValue),
+                maxValue = GetFloatValue(MaxValue),
+                formula = Formula
+            };
         }
         protected override bool IsValid(IJsonData data) {
-            if ( ((NumberJSONData)data).name == string.Empty) {
+            if ( ((NumberJSONData)data).name == String.Empty) {
                 Debug.LogError("Name empty");
                 return false;
             }

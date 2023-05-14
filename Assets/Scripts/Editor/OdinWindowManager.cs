@@ -16,7 +16,8 @@ namespace Editor {
 
         [Button]
         public void CreateModification() {
-            
+            ModificationsCreator.s_container = _container;
+            ModificationsCreator.OpenWindow();
         }
     }
 }
