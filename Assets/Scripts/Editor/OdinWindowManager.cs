@@ -23,12 +23,22 @@ namespace Editor {
 
         [Button]
         public void CreateModification() {
-            _numbersTextAsset = Resources.Load<TextAsset>(_container.numbersPath);
-            _numberJsonDatas = JsonConvert.DeserializeObject<NumbersJSON>(_numbersTextAsset.text).jsonDatas;
-            
+            LoadNumbers();
             ModificationsCreator.s_numbersNames = _numberJsonDatas.Select(_ => _.name).ToList();
             ModificationsCreator.s_container = _container;
             ModificationsCreator.OpenWindow();
+        }
+
+        [Button]
+        public void CreateEffect() {
+            
+        }
+
+
+
+        void LoadNumbers() {
+            _numbersTextAsset = Resources.Load<TextAsset>(_container.numbersPath);
+            _numberJsonDatas = JsonConvert.DeserializeObject<NumbersJSON>(_numbersTextAsset.text).jsonDatas;
         }
     }
 }

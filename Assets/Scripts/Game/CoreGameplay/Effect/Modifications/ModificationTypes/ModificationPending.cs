@@ -19,7 +19,7 @@ namespace Game.CoreGameplay.Effect {
                 return;
             }
             */
-            if(_turnsToComplete - turns != _turnsToComplete) return;
+            if(_turnsToComplete - turns < _turnsToComplete) return;
 
             base.Modify(turns);
         }
