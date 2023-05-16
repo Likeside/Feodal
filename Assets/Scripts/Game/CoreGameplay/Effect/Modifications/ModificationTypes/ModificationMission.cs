@@ -25,7 +25,7 @@ namespace Game.CoreGameplay.Effect {
             }
             */
             Debug.Log("Turns to complete: " + _turnsToComplete + ", turns: " + turns);
-            if(_turnsToComplete - turns < _turnsToComplete) return;
+            if(_turnsToComplete - turns != _turnsToComplete) return;
             
             float success = Random.Range(0, 100);
             

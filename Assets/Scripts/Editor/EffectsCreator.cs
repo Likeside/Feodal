@@ -1,21 +1,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using Game;
-using Game.CoreGameplay;
+using Game.CoreGameplay.Effect;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Editor {
     public class EffectsCreator: EntityCreator<EffectsCreator, EffectsJSON> {
         
-        
         public static List<string> s_numbersNames;
 
-        public EffectsType Type;
-        [TextArea(1, 10)]
-        public string Name = "";
+        public EffectType Type;
         [ValueDropdown(nameof(s_numbersNames))]
-        public string CountNumber = s_numbersNames[0];  
+        public string CountNumber = s_numbersNames[0]; 
         [TextArea(1, 50)]
         public string ModificationsNames = "";
         [TextArea(1, 10)] 
@@ -30,6 +27,7 @@ namespace Editor {
         public string ImageAssetLink = "";  
         [TextArea(1, 50)] 
         public string BorderAssetLink = "";
+ 
         
         protected override void CreateDataAndLoadTextAsset() {
             LoadTextAsset(s_container.effectsPath);
@@ -39,7 +37,7 @@ namespace Editor {
 
         protected override void FillData() {
             _jsonData = new EffectJSONData() {
-                type = Type == EffectsType.stat ? "static" : Type.ToString(),
+                type = Type.ToString(),
                 countNumberName = CountNumber,
                 modificationsName = ModificationsNames.Split(",").ToList(),
                 initTurns = GetIntValue(InitTurns),
@@ -52,7 +50,11 @@ namespace Editor {
         }
 
         protected override bool IsValid(IJsonData data) {
-            return false;
-        } 
+            if (((EffectJSONData) data).modificationsName.Count < 1) {
+                Debug.LogError("No modifications added");
+                return false;
+            }
+            return true;
+        }
     }
 }

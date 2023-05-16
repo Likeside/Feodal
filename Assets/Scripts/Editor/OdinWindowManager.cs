@@ -31,7 +31,10 @@ namespace Editor {
 
         [Button]
         public void CreateEffect() {
-            
+            LoadNumbers();
+            EffectsCreator.s_numbersNames = _numberJsonDatas.Select(_ => _.name).ToList();
+            EffectsCreator.s_container = _container;
+            EffectsCreator.OpenWindow();
         }
 
 

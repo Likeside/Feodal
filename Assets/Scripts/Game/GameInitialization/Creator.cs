@@ -121,7 +121,7 @@ namespace Game {
                    listOfModifications.Add( _holder.GetModificationByName(modificationName));
                }
                _effects.Add(new Effect( _disposable, _holder.GetNumber(data.countNumberName), listOfModifications, data.countNumberName,
-                   data.initTurns, _holder.GetNumber(data.turnModificationNumberName)));
+                   data.initTurns, _holder.GetNumber(data.turnModificationNumberName), data.type));
            }
        }
        

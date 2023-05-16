@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UniRx;
@@ -7,6 +8,9 @@ namespace Game.CoreGameplay.Effect {
     public class Effect: DisposableInjection {
         public string Name { get; }
         public List<string> ModificationsName { get; }
+        
+        public EffectType Type { get; }
+        
         public ReactiveCollection<ReactiveProperty<int>> TurnsToCompleteList = new();
         readonly List<IModification> _modifications;
         int _initTurns;
@@ -16,7 +20,7 @@ namespace Game.CoreGameplay.Effect {
         int _previousCountValue;
         List<ReactiveProperty<int>> _turnsToDecrease;
 
-        public Effect(CompositeDisposable disposable, Number effectCount, List<IModification> modifications, string name, int initTurns, Number turnModificatorNumber): base(disposable) {
+        public Effect(CompositeDisposable disposable, Number effectCount, List<IModification> modifications, string name, int initTurns, Number turnModificatorNumber, string type): base(disposable) {
             _turnsToDecrease = new List<ReactiveProperty<int>>();
             _modifications = modifications;
             Name = name;
@@ -26,6 +30,7 @@ namespace Game.CoreGameplay.Effect {
             _effectCount = effectCount;
             _previousCountValue = (int)_effectCount.Value.Value;
             _effectCount.Value.Subscribe(AddOrRemoveEffect).AddTo(_disposable);
+            Type = (EffectType)Enum.Parse(typeof(EffectType), type);
         }
 
         public void Load(ReactiveCollection<ReactiveProperty<int>> turnsToCompleteList) {
@@ -123,5 +128,6 @@ namespace Game.CoreGameplay.Effect {
             }
             _previousCountValue = (int)count;
         }
+        
     }
 }
