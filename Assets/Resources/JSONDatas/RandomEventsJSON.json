@@ -3,6 +3,10 @@
     {
       "effectCountNumberName": "BasicDummy",
       "probabilityNumberName": "BasicProbabilityNumber"
+    },
+    {
+      "effectCountNumberName": "BasicDummy",
+      "probabilityNumberName": "StaticDummy"
     }
   ]
 }
