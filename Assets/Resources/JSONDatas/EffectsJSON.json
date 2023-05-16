@@ -3,29 +3,35 @@
     {
       "type": "Dummy",
       "countNumberName": "BasicDummy",
-      "modificationsName": ["BasicDummy"],
+      "modificationsName": [
+        "BasicDummy"
+      ],
       "initTurns": -1,
       "turnModificationNumberName": "TurnModificatorNumber",
       "description": "",
       "subdescription": "",
       "imageAssetLink": "",
       "borderAssetLink": ""
-    }, 
+    },
     {
       "type": "Dummy",
       "countNumberName": "MissionDummy",
-      "modificationsName": ["MissionDummy"],
+      "modificationsName": [
+        "MissionDummy"
+      ],
       "initTurns": 5,
       "turnModificationNumberName": "TurnModificatorNumber",
       "description": "",
       "subdescription": "",
       "imageAssetLink": "",
       "borderAssetLink": ""
-    }, 
+    },
     {
       "type": "Dummy",
       "countNumberName": "PendingDummy",
-      "modificationsName": ["PendingDummy"],
+      "modificationsName": [
+        "PendingDummy"
+      ],
       "initTurns": 3,
       "turnModificationNumberName": "TurnModificatorNumber",
       "description": "",
@@ -36,11 +42,26 @@
     {
       "type": "Dummy",
       "countNumberName": "StaticDummy",
-      "modificationsName": ["StaticDummy"],
+      "modificationsName": [
+        "StaticDummy"
+      ],
       "initTurns": -1,
       "turnModificationNumberName": "TurnModificatorNumber",
       "description": "",
       "subdescription": "",
+      "imageAssetLink": "",
+      "borderAssetLink": ""
+    },
+    {
+      "type": "Building",
+      "countNumberName": "x",
+      "modificationsName": [
+        "PendingDummy"
+      ],
+      "initTurns": -1,
+      "turnModificationNumberName": "Gold",
+      "description": "desc",
+      "subdescription": "subdesc",
       "imageAssetLink": "",
       "borderAssetLink": ""
     }

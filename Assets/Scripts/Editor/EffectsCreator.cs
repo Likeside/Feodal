@@ -17,7 +17,7 @@ namespace Editor {
         public string ModificationsNames = "";
         [TextArea(1, 10)] 
         public string InitTurns = "-1";
-        [TextArea(1, 50)] 
+        [ValueDropdown(nameof(s_numbersNames))]
         public string TurnModificationNumberName = s_numbersNames[0];
         [TextArea(1, 50)] 
         public string Description = "";    
