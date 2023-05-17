@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Game;
 using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace Editor {
     public class CardsCreator: EntityCreator<CardsCreator, CardsJSON> {
@@ -35,7 +36,11 @@ namespace Editor {
         }
 
         protected override bool IsValid(IJsonData data) {
-            
+            var jsonData = (CardJSONData) data;
+            if (jsonData.effectCountNumberName.Equals(jsonData.availabilityNumberName)) {
+                Debug.LogError("EffectCountNumberName cant be the same as availabilityNumberName");
+                return false;
+            }
             return true;
         } 
     }
