@@ -16,14 +16,14 @@ namespace Game.View {
         [SerializeField] GameObject _turnsObj;
 
 
-        IDataHolder _holder;
+        protected IDataHolder _holder;
 
         [Inject]
         public void SetHolder(IDataHolder holder) {
             _holder = holder;
         }
         
-        public void DisplayEffect(Effect effect, int turns) {
+        public virtual void Display(Effect effect, int turns) {
             int modCount = effect.ModificationsName.Count;
             _turnsObj.SetActive(turns >= 0);
             _turnsText.text = turns.ToString();
