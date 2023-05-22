@@ -7,8 +7,7 @@ using UnityEngine;
 namespace Editor {
     public class CardsCreator: EntityCreator<CardsCreator, CardsJSON> {
         public static List<string> s_numbersNames;
-
-
+        
         [ValueDropdown(nameof(s_numbersNames))]
         public string EffectCountNumberName = s_numbersNames[0];
         [ValueDropdown(nameof(s_numbersNames))]

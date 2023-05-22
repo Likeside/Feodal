@@ -5,6 +5,8 @@ using UnityEngine;
 
 namespace Game.CoreGameplay.Effect {
     public class ModificationMission: ModificationPending {
+
+        public float SuccessChanceValue => _successChanceValue;
         
         readonly string _successChanceFormula;
         float _successChanceValue;

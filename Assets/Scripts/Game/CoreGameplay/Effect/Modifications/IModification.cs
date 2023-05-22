@@ -3,5 +3,7 @@ namespace Game.CoreGameplay.Effect {
 
         public string Name { get; }
         public void Modify(int turns);
+        
+        public float ModificationValue { get; }
     }
 }
