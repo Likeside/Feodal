@@ -17,6 +17,8 @@ namespace Game.View {
 
 
         protected IDataHolder _holder;
+        
+        public Effect CurrentEffect { get; private set; }
 
         [Inject]
         public void SetHolder(IDataHolder holder) {
@@ -24,11 +26,9 @@ namespace Game.View {
         }
         
         public virtual void Display(Effect effect, int turns) {
+            CurrentEffect = effect;
             int modCount = effect.ModificationsName.Count;
-            _turnsObj.SetActive(turns >= 0);
-            _turnsText.text = turns.ToString();
-
-
+            RefreshTurns(turns);
             _icon.sprite = _holder.GetEffectIconByName(effect.Name);
             
             for (int i = 0; i < _modificationImages.Count; i++) {
@@ -46,6 +46,11 @@ namespace Game.View {
                     _modificationImages[i].gameObject.SetActive(false);
                 }
             }
+        }
+
+        public void RefreshTurns(int turns) {
+            _turnsObj.SetActive(turns >= 0);
+            _turnsText.text = turns.ToString();
         }
     }
 }
