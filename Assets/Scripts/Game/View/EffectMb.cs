@@ -14,6 +14,8 @@ namespace Game.View {
         [SerializeField] Image _icon;
         [SerializeField] TextMeshProUGUI _turnsText;
         [SerializeField] GameObject _turnsObj;
+        [SerializeField] TextMeshProUGUI _countText;
+        [SerializeField] GameObject _countObj;
 
 
         protected IDataHolder _holder;
@@ -25,10 +27,10 @@ namespace Game.View {
             _holder = holder;
         }
         
-        public virtual void Display(Effect effect, int turns) {
+        public virtual void Display(Effect effect, int turns, int count) {
             CurrentEffect = effect;
             int modCount = effect.ModificationsName.Count;
-            RefreshTurns(turns);
+            RefreshTurnsAndCount(turns, count);
             _icon.sprite = _holder.GetEffectIconByName(effect.Name);
             
             for (int i = 0; i < _modificationImages.Count; i++) {
@@ -48,9 +50,13 @@ namespace Game.View {
             }
         }
 
-        public void RefreshTurns(int turns) {
+        public void RefreshTurnsAndCount(int turns, int count) {
             _turnsObj.SetActive(turns >= 0);
             _turnsText.text = turns.ToString();
+            
+            _countObj.SetActive(count > 1);
+            _countText.text = count.ToString();
+
         }
     }
 }

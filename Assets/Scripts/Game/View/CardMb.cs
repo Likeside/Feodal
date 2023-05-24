@@ -5,9 +5,9 @@ using UnityEngine;
 namespace Game.View {
     public class CardMb: EffectMb {
         [SerializeField] TextMeshProUGUI _description;
-        public override void Display(Effect effect, int turns) {
+        public override void Display(Effect effect, int turns, int count) {
             _description.text = _holder.GetCardDescriptionByName(effect.Name);
-            base.Display(effect, turns);
+            base.Display(effect, turns, count);
         }
     }
 }
