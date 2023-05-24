@@ -25,6 +25,8 @@ namespace Game {
         List<CardJSONData> _cardJsonDatas;
         List<EventsJSONData> _eventsJsonDatas;
         
+        Sprite _dummySprite = Sprite.Create(Texture2D.whiteTexture, new Rect(10, 10, 10, 10), Vector2.zero);
+        
         public void PassNumbers(List<Number> numbers, List<NumberJSONData> numberJsonDatas) {
             _numbers = numbers;
             _numberJsonDatas = numberJsonDatas;
@@ -76,47 +78,47 @@ namespace Game {
         }
 
         public Sprite GetModificationIconByName(string modificationName) {
-            throw new System.NotImplementedException();
+            return _dummySprite;
         }
 
         public Sprite GetModificationBorderByName(string modificationName) {
-            throw new System.NotImplementedException();
+            return _dummySprite;
         }
 
         public float GetModificationValueByName(string modificationName) {
-            throw new System.NotImplementedException();
+            return _modifications.FirstOrDefault(m => m.Name == modificationName).ModificationValue;
         }
 
         public Sprite GetEffectIconByName(string effectName) {
-            throw new System.NotImplementedException();
+            return _dummySprite;
         }
 
         public Sprite EffectBorderByName(string effectName) {
-            throw new System.NotImplementedException();
+            return _dummySprite;
         }
 
         public Sprite GetCardIconByName(string cardName) {
-            throw new System.NotImplementedException();
+            return _dummySprite;
         }
 
         public Sprite GetCardBorderByName(string cardName) {
-            throw new System.NotImplementedException();
+            return _dummySprite;
         }
 
         public string GetEffectDescriptionByName(string effectName) {
-            throw new System.NotImplementedException();
+            return _effectJsonDatas.FirstOrDefault(_ => _.countNumberName == effectName).description;
         }
 
         public string GetEffectSubdescriptionByName(string effectName) {
-            throw new System.NotImplementedException();
+            return _effectJsonDatas.FirstOrDefault(_ => _.countNumberName == effectName).subdescription;
         }
 
         public EffectType GetEffectTypeByName(string effectName) {
-            throw new System.NotImplementedException();
+            return _effects.FirstOrDefault(_ => _.Name == effectName).Type;
         }
 
         public string GetCardDescriptionByName(string cardName) {
-            throw new System.NotImplementedException();
+            return _effectJsonDatas.FirstOrDefault(_ => _.countNumberName == cardName).description; //TODO: заменить на дескрипшн карты (возможно)
         }
     }
 }

@@ -1,13 +1,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using Game.CoreGameplay.Effect;
+using GameScripts;
 using UnityEngine;
 
 namespace Game.View {
-    public class EffectBlockMb: PoolerMonoInjection {
+    public class EffectBlockMb: MonoBehaviour {
         EffectType _type;
         List<Effect> _effectsToDisplay;
         List<EffectMb> _currentEffectsMb;
+        ObjectPooler _pooler;
+
+
+        public void Initialize(EffectType type, ObjectPooler pooler) {
+            _type = type;
+            _pooler = pooler;
+        }
         
         public void DisplayEffects(List<Effect> allEffects) {
             _effectsToDisplay = allEffects.Where(e => e.Type == _type && e.TurnsToCompleteList.Count > 0)
@@ -57,8 +65,6 @@ namespace Game.View {
             else if (countDifference < 0) {
                 RemoveEffectsMb(-countDifference);
             }
-
-          
         }
         
     }
