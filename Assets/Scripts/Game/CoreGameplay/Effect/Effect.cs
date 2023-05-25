@@ -20,9 +20,11 @@ namespace Game.CoreGameplay.Effect {
         Number _effectCount;
         int _previousCountValue;
         List<ReactiveProperty<int>> _turnsToDecrease;
+        List<ReactiveProperty<int>> _turnsToRefresh;
 
         public Effect(CompositeDisposable disposable, Number effectCount, List<IModification> modifications, string name, int initTurns, Number turnModificatorNumber, string type): base(disposable) {
             _turnsToDecrease = new List<ReactiveProperty<int>>();
+            _turnsToRefresh = new List<ReactiveProperty<int>>();
             _modifications = modifications;
             Name = name;
             _initTurns = initTurns;
@@ -44,14 +46,22 @@ namespace Game.CoreGameplay.Effect {
         public void ApplyAtEndOfTurn() {
             Debug.Log("Applied effect: " + Name);
             _turnsToDecrease.Clear();
+            _turnsToRefresh.Clear();
             for (int i = 0; i < TurnsToCompleteList.Count; i++) {
-              //  if (TurnsToCompleteList[i].Value > 0) {
+                if (TurnsToCompleteList[i].Value > 0) {
                     _turnsToDecrease.Add(TurnsToCompleteList[i]);
-              //  }
+                }
+                else if( TurnsToCompleteList[i].Value < 0){ 
+                    _turnsToRefresh.Add(TurnsToCompleteList[i]);
+                }
             }
 
             foreach (var turnToDecrease in _turnsToDecrease) {
                 turnToDecrease.Value--;
+            }
+
+            foreach (var turnToRefresh in _turnsToRefresh) {
+                turnToRefresh.SetValueAndForceNotify(-1);
             }
             /*
             foreach (var turns in TurnsToCompleteList) {
