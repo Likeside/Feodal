@@ -12,6 +12,7 @@ namespace Game.CoreGameplay.Effect {
         public EffectType Type { get; }
         
         public ReactiveCollection<ReactiveProperty<int>> TurnsToCompleteList = new();
+        
         readonly List<IModification> _modifications;
         int _initTurns;
         ReactiveProperty<int> _currentTurnsToRemove;
@@ -128,6 +129,16 @@ namespace Game.CoreGameplay.Effect {
             }
             _previousCountValue = (int)count;
         }
-        
+
+       public List<int> GetDistinctTurns() {
+           var distinctTurns = new List<int>();
+           foreach (var turns in TurnsToCompleteList) {
+               if (!distinctTurns.Contains(turns.Value)) {
+                   distinctTurns.Add(turns.Value);
+               }
+           }
+           return distinctTurns;
+       }
+
     }
 }

@@ -1,5 +1,5 @@
 namespace Game.CoreGameplay.Effect {
     public enum EffectType {
-        Building, Construction, Unit
+        Building, Construction, Unit, Dummy
     }
 }

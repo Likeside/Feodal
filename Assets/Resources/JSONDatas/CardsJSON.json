@@ -40,6 +40,14 @@
       },
       "availabilityNumberName": "MissionDummy",
       "availabilityParameter": 1.0
+    },
+    {
+      "effectCountNumberName": "Knight",
+      "initCosts": {
+        "Gold": 0.0
+      },
+      "availabilityNumberName": "BasicDummy",
+      "availabilityParameter": 1.0
     }
   ]
 }

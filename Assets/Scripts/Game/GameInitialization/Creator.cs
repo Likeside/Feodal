@@ -88,19 +88,19 @@ namespace Game {
            foreach (var data in _modificationsJson.jsonDatas) {
                ModificationBase modification;
                switch (data.type) {
-                   case "basic":
+                   case "Basic":
                        modification = new ModificationBase(_disposable, _solver, _holder, data.name, _holder.GetNumber(data.numberToModifyName),
                            data.modificationFormula);
                        break;
-                   case "pending":
+                   case "Pending":
                        modification = new ModificationPending(_disposable, _solver, _holder,data.name, _holder.GetNumber(data.numberToModifyName),
                            data.modificationFormula, data.turnsToComplete);
                        break;
-                   case "mission":
+                   case "Mission":
                        modification = new ModificationMission(_disposable, _solver, _holder,data.name, _holder.GetNumber(data.numberToModifyName),
                            data.modificationFormula, data.turnsToComplete, data.successChanceFormula);
                        break;
-                   case "static":
+                   case "Static":
                        modification = new ModificationStatic(_disposable, _solver, _holder,data.name, _holder.GetNumber(data.numberToModifyName),
                            data.modificationFormula);
                        break;

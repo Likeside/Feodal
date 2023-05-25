@@ -8,7 +8,7 @@ using UnityEngine.UI;
 using Zenject;
 
 namespace Game.View {
-    public class EffectMb: DataHolderMonoInjection {
+    public class EffectMb: MonoBehaviour {
 
         [SerializeField] List<EffectModDisplay> _modificationImages;
         [SerializeField] Image _icon;
@@ -18,11 +18,22 @@ namespace Game.View {
         [SerializeField] GameObject _countObj;
         
         public Effect CurrentEffect { get; private set; }
+
+        protected IDataHolder _holder;
+        bool _initialized;
+
+
+        public void Initialize(IDataHolder holder) {
+            if(_initialized) return;
+            _holder = holder;
+            _initialized = true;
+        }
         
         public virtual void Display(Effect effect, int turns, int count) {
             CurrentEffect = effect;
             int modCount = effect.ModificationsName.Count;
             RefreshTurnsAndCount(turns, count);
+            if(_holder == null) Debug.LogError("HOLDER NULL");
             _icon.sprite = _holder.GetEffectIconByName(effect.Name);
             
             for (int i = 0; i < _modificationImages.Count; i++) {

@@ -1,7 +1,7 @@
 {
   "jsonDatas": [
     {
-      "type": "basic",
+      "type": "Basic",
       "name": "BasicDummy",
       "numberToModifyName": "DummyToModify",
       "modificationFormula": "0+1",
@@ -11,7 +11,7 @@
       "borderAssetLink": ""
     },
     {
-      "type": "pending",
+      "type": "Pending",
       "name": "PendingDummy",
       "numberToModifyName": "DummyToModify",
       "modificationFormula": "0+1",
@@ -21,7 +21,7 @@
       "borderAssetLink": ""
     },
     {
-      "type": "mission",
+      "type": "Mission",
       "name": "MissionDummy",
       "numberToModifyName": "DummyToModify",
       "modificationFormula": "0+1",
@@ -31,7 +31,7 @@
       "borderAssetLink": ""
     },
     {
-      "type": "static",
+      "type": "Static",
       "name": "StaticDummy",
       "numberToModifyName": "DummyToModify",
       "modificationFormula": "<StaticDummy>*2",
@@ -114,6 +114,16 @@
       "type": "Basic",
       "name": "a2",
       "numberToModifyName": "x",
+      "modificationFormula": "1",
+      "turnsToComplete": -1,
+      "successChanceFormula": "",
+      "imageAssetLink": "",
+      "borderAssetLink": ""
+    },
+    {
+      "type": "Basic",
+      "name": "MilitaryPower",
+      "numberToModifyName": "MilitaryPower",
       "modificationFormula": "1",
       "turnsToComplete": -1,
       "successChanceFormula": "",

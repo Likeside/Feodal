@@ -64,6 +64,19 @@
       "subdescription": "subdesc",
       "imageAssetLink": "",
       "borderAssetLink": ""
+    },
+    {
+      "type": "Unit",
+      "countNumberName": "Knight",
+      "modificationsName": [
+        "MilitaryPower"
+      ],
+      "initTurns": -1,
+      "turnModificationNumberName": "BasicDummy",
+      "description": "Knight increases military power",
+      "subdescription": "Subdesc knight",
+      "imageAssetLink": "",
+      "borderAssetLink": ""
     }
   ]
 }

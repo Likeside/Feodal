@@ -9,6 +9,7 @@ namespace Game.CoreGameplay.Injections {
 
         [Inject]
         public void SetHolder(IDataHolder holder) {
+            Debug.Log("Injecting holder in dataholdermonoinjection");
             _holder = holder;
         }
     }

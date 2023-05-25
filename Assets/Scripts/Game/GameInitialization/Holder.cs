@@ -25,7 +25,7 @@ namespace Game {
         List<CardJSONData> _cardJsonDatas;
         List<EventsJSONData> _eventsJsonDatas;
         
-        Sprite _dummySprite = Sprite.Create(Texture2D.whiteTexture, new Rect(10, 10, 10, 10), Vector2.zero);
+        Sprite _dummySprite = Sprite.Create(Texture2D.whiteTexture, new Rect(0, 0, 4, 4), Vector2.zero);
         
         public void PassNumbers(List<Number> numbers, List<NumberJSONData> numberJsonDatas) {
             _numbers = numbers;

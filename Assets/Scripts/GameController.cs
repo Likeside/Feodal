@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Game;
@@ -27,12 +28,13 @@ public class GameController : LocalSingleton<GameController> {
 
         [Inject]
         public void InjectDependencies(CompositeDisposable disposable, GRES_Solver solver, IDataHolder holder) {
+                Debug.Log("Injecting dependencies in gamecontroller");
                 _disposable = disposable;
                 _solver = solver;
                 _holder = holder;
         }
 
-        void Start() { 
+        IEnumerator Start() { 
                 //TODO: Отписываться в определенный момент игры
                 if (_buttonManager.TipButtonActive) _buttonManager.OnTipButtonPressed += TipButtonPressed;
                 if (_buttonManager.PauseButtonActive) _buttonManager.OnTipButtonPressed += PauseButtonPressed;
@@ -46,6 +48,9 @@ public class GameController : LocalSingleton<GameController> {
                 creator.Create(_disposable, _solver, _holder);
                 
                 _cardsInSlot = new List<Card>();
+
+                yield return new WaitForFixedUpdate();
+                _display.Initialize(_holder);
         }
 
         void RateUsLinkOpened() {
