@@ -45,9 +45,9 @@ namespace Game.CoreGameplay.Effect {
             Debug.Log("Applied effect: " + Name);
             _turnsToDecrease.Clear();
             for (int i = 0; i < TurnsToCompleteList.Count; i++) {
-                if (TurnsToCompleteList[i].Value > 0) {
+              //  if (TurnsToCompleteList[i].Value > 0) {
                     _turnsToDecrease.Add(TurnsToCompleteList[i]);
-                }
+              //  }
             }
 
             foreach (var turnToDecrease in _turnsToDecrease) {
@@ -72,18 +72,21 @@ namespace Game.CoreGameplay.Effect {
             //turnsProperty.Value--;
            // turnsProperty.Value++;
             //добавляем количество ходов до окончания эффекта в список количества ходов/количества эффектов
+            Debug.Log("Adding turns property to list");
             TurnsToCompleteList.Add(turnsProperty);
         }
 
         void SubscribeModificationToTurns(ReactiveProperty<int> turnsProperty) {
+            Debug.Log("Subscribing modification to turns");
             //на каждое изменение количества ходов вызываем модификацию
-            turnsProperty.Subscribe(
+            turnsProperty.SkipLatestValueOnSubscribe().Subscribe(
                 _ => {
                     foreach (var modification in _modifications) {
                         modification.Modify(turnsProperty.Value);
                     }
                 }
             ).AddTo(_disposable);
+            
             
             //если количество оставшихся ходов равно нулю, удаляем свойство из списка, чтобы не вызывать модификации
             turnsProperty.Where(t => t == 0)
@@ -130,7 +133,7 @@ namespace Game.CoreGameplay.Effect {
             _previousCountValue = (int)count;
         }
 
-       public List<int> GetDistinctTurns() {
+       public List<int> GetDistinctTurns() { //TODO: optimize
            var distinctTurns = new List<int>();
            foreach (var turns in TurnsToCompleteList) {
                if (!distinctTurns.Contains(turns.Value)) {

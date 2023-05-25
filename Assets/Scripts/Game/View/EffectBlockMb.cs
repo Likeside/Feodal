@@ -18,7 +18,7 @@ namespace Game.View {
         IDataHolder _holder;
 
 
-        public void Initialize(EffectType type, ObjectPooler pooler, IDataHolder holder) {
+        public void Initialize(EffectType type, ObjectPooler pooler, IDataHolder holder) { //TODO: inject holder somewhere else
             _type = type;
             _pooler = pooler;
             _holder = holder;
@@ -30,7 +30,7 @@ namespace Game.View {
             Debug.Log("Effects to display count: " + _effectsToDisplay.Count);
             int totalEffectsToDisplay = 0;
             foreach (var eff in _effectsToDisplay) {
-                totalEffectsToDisplay += eff.GetDistinctTurns().Count; //TurnsToCompleteList.Distinct().Count(); //подсчитываем количество вью, учитывая, что стакаем одинаковые эффекты с одинаковым количеством ходов
+                totalEffectsToDisplay += eff.GetDistinctTurns().Count;  //подсчитываем количество вью, учитывая, что стакаем одинаковые эффекты с одинаковым количеством ходов
             }
             Debug.Log("TOTAL EFFECTSMB TO DISPLAY: " + totalEffectsToDisplay);
             int countDifference = totalEffectsToDisplay - _currentEffectsMb.Count; // вычисляем разницу между текущим вью и количеством вью, которое должно быть отображено
@@ -41,7 +41,7 @@ namespace Game.View {
             }
             int i = 0;
             foreach (var eff in _effectsToDisplay) { //на каждый эффект, который должен быть отражен, мы: 
-                foreach (var distinctTurn in eff.GetDistinctTurns()) { //TurnsToCompleteList.Distinct()) { 
+                foreach (var distinctTurn in eff.GetDistinctTurns()) { 
                     int count = eff.TurnsToCompleteList.Count(_ => _.Value == distinctTurn); // подсчитали, сколько каждого уникального количества ходов в эффекте
                     if (_currentEffectsMb[i].CurrentEffect == eff) {
                         _currentEffectsMb[i].RefreshTurnsAndCount(distinctTurn, count); //если во вьюшке уже тот же самый эффект отображается, то только обновляем количество ходов и количество эффектов
